@@ -124,7 +124,7 @@ const ProductDetail = () => {
                         <motion.div
                             initial={{ y: -20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            className="badge badge-primary badge-lg p-4 gap-2 shadow-sm"
+                            className="badge badge-lg p-4 gap-2 shadow-sm bg-primary/10 text-primary border-primary/20"
                         >
                             <PlayCircle className="w-4 h-4" />
                             Ayo Belajar Bersama!
@@ -149,7 +149,24 @@ const ProductDetail = () => {
                             />
                         )}
 
-                        <div className="flex justify-center lg:justify-start">
+                        <div className="flex justify-center lg:justify-start relative group">
+                            {/* Rabbit (Kelinci) Mascot - Encouraging Reading */}
+                            <motion.div
+                                animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute -right-16 -top-20 hidden sm:block z-20 pointer-events-none"
+                            >
+                                <img src="/images/characters/kelinci.png" alt="Rabbit Mascot" className="w-28 drop-shadow-lg" />
+                            </motion.div>
+                            {/* Owl Mascot - Left Side */}
+                            <motion.div
+                                animate={{ y: [0, -5, 0], rotate: [0, -2, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                                className="absolute -left-20 -bottom-10 hidden sm:block z-20 pointer-events-none"
+                            >
+                                <img src="/images/characters/owl.png" alt="Owl Mascot" className="w-24 drop-shadow-lg" />
+                            </motion.div>
+
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -157,7 +174,7 @@ const ProductDetail = () => {
                                     document.getElementById('materi-tabs')?.scrollIntoView({ behavior: 'smooth' });
                                     setActiveTab('identitas');
                                 }}
-                                className="btn btn-primary btn-lg rounded-full shadow-xl gap-3"
+                                className="btn btn-primary btn-lg rounded-full shadow-xl gap-3 relative z-10"
                             >
                                 Mulai Baca <ArrowLeft className="w-6 h-6 rotate-[-90deg]" />
                             </motion.button>
@@ -262,6 +279,25 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
+            {/* Running Squirrel (Tupai) Mascot at Bottom */}
+            <motion.div
+                animate={{ x: [-200, 1000] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className="fixed bottom-0 left-0 z-50 pointer-events-none hidden lg:block opacity-90"
+                style={{ width: '150px' }}
+            >
+                <img src="/images/characters/tupai.png" alt="Running Squirrel" className="w-full drop-shadow-xl" />
+            </motion.div>
+
+            {/* Running Fox Mascot at Bottom (Opposite Direction) */}
+            <motion.div
+                animate={{ x: [1000, -200] }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear", delay: 2 }}
+                className="fixed bottom-0 left-0 z-40 pointer-events-none hidden lg:block opacity-90"
+                style={{ width: '140px' }}
+            >
+                <img src="/images/characters/fox.png" alt="Running Fox" className="w-full drop-shadow-xl scale-x-[-1]" />
+            </motion.div>
         </motion.div>
     );
 };

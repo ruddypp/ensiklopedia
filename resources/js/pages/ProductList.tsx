@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import api from '../services/api';
 import ProductCard from '../components/ProductCard';
 
@@ -32,9 +33,47 @@ const ProductList = () => {
     }
 
     return (
-        <div className="space-y-8 min-h-screen bg-base-100 pb-12">
-            <div className="hero bg-base-100 py-12 relative overflow-hidden">
-                <div className="hero-content text-center">
+        <div className="space-y-8 min-h-screen bg-base-100 pb-12 relative overflow-hidden">
+            {/* Turtle (Penyu) Mascot - Bottom Left */}
+            <motion.div
+                animate={{ rotate: [0, 5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -left-10 bottom-0 hidden lg:block z-0 pointer-events-none"
+            >
+                <img src="/images/characters/penyu.png" alt="Turtle Mascot" className="w-64 drop-shadow-xl opacity-80" />
+            </motion.div>
+
+            {/* Bear Mascot - Bottom Right */}
+            <motion.div
+                animate={{ rotate: [0, -5, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -right-10 bottom-0 hidden lg:block z-0 pointer-events-none"
+            >
+                <img src="/images/characters/bear.png" alt="Bear Mascot" className="w-56 drop-shadow-xl opacity-80" />
+            </motion.div>
+
+            <div className="hero bg-base-100 py-12 relative overflow-visible">
+                {/* Squirrel (Tupai) Mascot - Top Right Peeking */}
+                <motion.div
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
+                    className="absolute top-0 right-10 hidden md:block z-10 pointer-events-none"
+                >
+                    <img src="/images/characters/tupai.png" alt="Squirrel Mascot" className="w-32 drop-shadow-lg rotate-180" style={{ transform: 'scaleY(-1)' }} />
+                </motion.div>
+
+                {/* Fox Mascot - Top Left Peeking */}
+                <motion.div
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+                    className="absolute top-0 left-10 hidden md:block z-10 pointer-events-none"
+                >
+                    <img src="/images/characters/fox.png" alt="Fox Mascot" className="w-32 drop-shadow-lg rotate-180" />
+                </motion.div>
+
+                <div className="hero-content text-center relative z-20">
                     <div className="max-w-2xl">
                         <span className="text-secondary font-bold tracking-widest text-sm uppercase mb-2 block">Katalog Pengetahuan</span>
                         <h1 className="text-4xl md:text-5xl font-bold text-base-content mb-6">Daftar Isi Pengetahuan</h1>
