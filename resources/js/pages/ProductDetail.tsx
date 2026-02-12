@@ -150,22 +150,7 @@ const ProductDetail = () => {
                         )}
 
                         <div className="flex justify-center lg:justify-start relative group">
-                            {/* Rabbit (Kelinci) Mascot - Encouraging Reading */}
-                            <motion.div
-                                animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute -right-16 -top-20 hidden sm:block z-20 pointer-events-none"
-                            >
-                                <img src="/images/characters/kelinci.png" alt="Rabbit Mascot" className="w-28 drop-shadow-lg" />
-                            </motion.div>
-                            {/* Owl Mascot - Left Side */}
-                            <motion.div
-                                animate={{ y: [0, -5, 0], rotate: [0, -2, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className="absolute -left-20 -bottom-10 hidden sm:block z-20 pointer-events-none"
-                            >
-                                <img src="/images/characters/owl.png" alt="Owl Mascot" className="w-24 drop-shadow-lg" />
-                            </motion.div>
+                            {/* Removed Rabbit/Owl mascots close to button to clean up */}
 
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
@@ -174,7 +159,7 @@ const ProductDetail = () => {
                                     document.getElementById('materi-tabs')?.scrollIntoView({ behavior: 'smooth' });
                                     setActiveTab('identitas');
                                 }}
-                                className="btn btn-primary btn-lg rounded-full shadow-xl gap-3 relative z-10"
+                                className="btn bg-white text-primary border-none hover:bg-primary/5 btn-lg rounded-full shadow-xl gap-3 relative z-10"
                             >
                                 Mulai Baca <ArrowLeft className="w-6 h-6 rotate-[-90deg]" />
                             </motion.button>
@@ -216,7 +201,7 @@ const ProductDetail = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.3 }}
-                                    className="max-w-5xl mx-auto space-y-12"
+                                    className="w-full max-w-7xl mx-auto space-y-12"
                                 >
                                     <div className="text-center space-y-4 mb-12">
                                         <motion.div
@@ -237,33 +222,74 @@ const ProductDetail = () => {
                                     {/* Video Section if available */}
                                     {activeSection.video_url && (
                                         <motion.div
-                                            initial={{ scale: 0.9, opacity: 0 }}
+                                            initial={{ scale: 0.95, opacity: 0 }}
                                             animate={{ scale: 1, opacity: 1 }}
                                             transition={{ delay: 0.2 }}
-                                            className="mockup-window bg-base-300 shadow-2xl mb-12"
+                                            className="w-full mb-16 relative perspective-1000"
                                         >
-                                            <div className="bg-black aspect-video flex justify-center items-center">
-                                                <VideoEmbed url={activeSection.video_url} title={`Video ${product.name}`} />
+                                            {/* Decorative Background Glow */}
+                                            <div className="absolute -inset-8 bg-gradient-to-tr from-primary/20 via-secondary/20 to-accent/20 rounded-[3rem] -z-10 blur-3xl opacity-60"></div>
+
+                                            {/* TV / Tablet Frame Container */}
+                                            <div className="bg-base-100 border-8 border-base-300 rounded-[2rem] md:rounded-[3rem] shadow-2xl overflow-hidden relative group">
+
+                                                {/* Screen Area */}
+                                                <div className="bg-black p-2 md:p-4 rounded-[1.5rem] md:rounded-[2.5rem]">
+                                                    <VideoEmbed
+                                                        url={activeSection.video_url}
+                                                        title={`Video ${product.name}`}
+                                                        className="rounded-[1rem] md:rounded-[2rem] shadow-inner ring-1 ring-white/10"
+                                                    />
+                                                </div>
+
+                                                {/* Bottom Control Bar Simulation for "Tablet/TV" look */}
+                                                <div className="h-12 md:h-16 bg-base-200 flex items-center justify-center gap-6 border-t border-base-300/50">
+                                                    <div className="w-12 h-1 rounded-full bg-base-content/20"></div>
+                                                    <div className="w-8 h-8 rounded-full border-2 border-base-content/20 flex items-center justify-center">
+                                                        <div className="w-3 h-3 rounded-[2px] border border-base-content/20"></div>
+                                                    </div>
+                                                    <div className="w-12 h-1 rounded-full bg-base-content/20"></div>
+                                                </div>
+
+                                                {/* "Speaker" Grills */}
+                                                <div className="absolute top-1/2 -left-1 -translate-y-1/2 space-y-2 hidden md:block">
+                                                    {[...Array(6)].map((_, i) => (
+                                                        <div key={i} className="w-1.5 h-8 bg-base-300 rounded-r-full"></div>
+                                                    ))}
+                                                </div>
+                                                <div className="absolute top-1/2 -right-1 -translate-y-1/2 space-y-2 hidden md:block">
+                                                    {[...Array(6)].map((_, i) => (
+                                                        <div key={i} className="w-1.5 h-8 bg-base-300 rounded-l-full"></div>
+                                                    ))}
+                                                </div>
+
+                                                {/* Play Button Overlay Hint (Optional) */}
+                                                <div className="absolute top-4 right-6 flex gap-2">
+                                                    <div className="w-3 h-3 rounded-full bg-error animate-pulse"></div>
+                                                    <div className="text-xs font-bold text-base-content/50 uppercase tracking-widest">Live</div>
+                                                </div>
                                             </div>
                                         </motion.div>
                                     )}
 
                                     {/* Main Text Content */}
-                                    <div
-                                        className={`
-                                            prose prose-xl prose-stone max-w-none text-base-content
-                                            prose-headings:text-primary prose-headings:font-bold
-                                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                                            prose-strong:text-base-content
-                                            prose-p:leading-relaxed prose-li:marker:text-primary
-                                            ${activeTab === 'proses' ? 'process-content' : ''}
-                                            ${activeTab === 'identitas' ? 'identity-content' : ''}
-                                            ${activeTab === 'ipas' ? 'ipas-content' : ''}
-                                            ${activeTab === 'bahan' ? 'bahan-content' : ''}
-                                            ${activeTab === 'dampak' ? 'dampak-content' : ''}
-                                        `}
-                                        dangerouslySetInnerHTML={{ __html: activeSection.content }}
-                                    />
+                                    <div className="max-w-4xl mx-auto">
+                                        <div
+                                            className={`
+                                                prose prose-xl prose-stone max-w-none text-base-content
+                                                prose-headings:text-primary prose-headings:font-bold
+                                                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                                                prose-strong:text-base-content
+                                                prose-p:leading-relaxed prose-li:marker:text-primary
+                                                ${activeTab === 'proses' ? 'process-content' : ''}
+                                                ${activeTab === 'identitas' ? 'identity-content' : ''}
+                                                ${activeTab === 'ipas' ? 'ipas-content' : ''}
+                                                ${activeTab === 'bahan' ? 'bahan-content' : ''}
+                                                ${activeTab === 'dampak' ? 'dampak-content' : ''}
+                                            `}
+                                            dangerouslySetInnerHTML={{ __html: activeSection.content }}
+                                        />
+                                    </div>
                                 </motion.div>
                             ) : (
                                 <motion.div
@@ -279,24 +305,15 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
-            {/* Running Squirrel (Tupai) Mascot at Bottom */}
+            {/* Teacher Helper - Fixed Bottom Left */}
             <motion.div
-                animate={{ x: [-200, 1000] }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="fixed bottom-0 left-0 z-50 pointer-events-none hidden lg:block opacity-90"
-                style={{ width: '150px' }}
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 100, delay: 1 }}
+                className="fixed bottom-0 left-4 z-50 pointer-events-none hidden lg:block"
+                style={{ width: '90px' }}
             >
-                <img src="/images/characters/tupai.png" alt="Running Squirrel" className="w-full drop-shadow-xl" />
-            </motion.div>
-
-            {/* Running Fox Mascot at Bottom (Opposite Direction) */}
-            <motion.div
-                animate={{ x: [1000, -200] }}
-                transition={{ duration: 18, repeat: Infinity, ease: "linear", delay: 2 }}
-                className="fixed bottom-0 left-0 z-40 pointer-events-none hidden lg:block opacity-90"
-                style={{ width: '140px' }}
-            >
-                <img src="/images/characters/fox.png" alt="Running Fox" className="w-full drop-shadow-xl scale-x-[-1]" />
+                <img src="/images/characters/anak5.png" alt="Teacher Helper" className="w-full drop-shadow-2xl" />
             </motion.div>
         </motion.div>
     );

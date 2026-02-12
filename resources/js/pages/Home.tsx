@@ -62,14 +62,14 @@ const Home = () => {
                                 Tentang Kami
                             </Link>
                         </div>
-                        {/* Rabbit (Kelinci) Mascot - Hero Bottom Right */}
+                        {/* Anak 1 (Student) Mascot - Hero Bottom Right */}
                         <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.5, type: "spring" }}
-                            className="absolute right-0 bottom-10 hidden lg:block z-0 pointer-events-none"
+                            className="absolute right-0 bottom-0 hidden lg:block z-0 pointer-events-none"
                         >
-                            <img src="/images/characters/kelinci.png" alt="Rabbit Mascot" className="w-32 drop-shadow-lg" />
+                            <img src="/images/characters/anak.png" alt="Student Mascot" className="w-40 drop-shadow-lg" />
                         </motion.div>
                     </div>
                 </div>
@@ -131,22 +131,22 @@ const Home = () => {
 
             {/* 5. Keunggulan (Features Grid) */}
             <section className="container mx-auto px-4 relative">
-                {/* Turtle (Penyu) Mascot - Floating Left */}
+                {/* Bapak Mascot - Floating Left */}
                 <motion.div
-                    animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+                    animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute -left-12 top-0 hidden xl:block z-0 pointer-events-none"
                 >
-                    <img src="/images/characters/penyu.png" alt="Turtle Mascot" className="w-48 drop-shadow-xl" />
+                    <img src="/images/characters/bapak.png" alt="Bapak Mascot" className="w-40 drop-shadow-xl" />
                 </motion.div>
 
-                {/* Bear Mascot - Floating Right */}
+                {/* Ibu Mascot - Floating Right */}
                 <motion.div
-                    animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
+                    animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                     className="absolute -right-12 bottom-0 hidden xl:block z-0 pointer-events-none"
                 >
-                    <img src="/images/characters/bear.png" alt="Bear Mascot" className="w-56 drop-shadow-xl" />
+                    <img src="/images/characters/ibu.png" alt="Ibu Mascot" className="w-40 drop-shadow-xl" />
                 </motion.div>
 
                 <h2 className="text-3xl font-bold text-center mb-10 text-primary relative z-10">Kenapa E-Ensiklopedia Ini Keren?</h2>
@@ -257,26 +257,26 @@ const Home = () => {
 
             {/* 8. Daftar Isi (Product Grid) - DaisyUI Cards */}
             <section id="daftar-isi" className="container mx-auto px-4 pb-12 relative">
-                {/* Squirrel (Tupai) Mascot - Peeking Right */}
+                {/* Anak 2 Mascot - Peeking Right */}
                 <motion.div
-                    initial={{ x: 100, opacity: 0 }}
+                    initial={{ x: 50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.5 }}
                     className="absolute -right-4 -top-20 hidden lg:block z-10 pointer-events-none"
                 >
-                    <img src="/images/characters/tupai.png" alt="Squirrel Mascot" className="w-40 drop-shadow-xl rotate-[-10deg]" />
+                    <img src="/images/characters/anak2.png" alt="Student Mascot" className="w-32 drop-shadow-xl" />
                 </motion.div>
 
-                {/* Fox Mascot - Peeking Left */}
+                {/* Anak 3 Mascot - Peeking Left */}
                 <motion.div
-                    initial={{ x: -100, opacity: 0 }}
+                    initial={{ x: -50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.7 }}
                     className="absolute -left-4 -top-20 hidden lg:block z-10 pointer-events-none"
                 >
-                    <img src="/images/characters/fox.png" alt="Fox Mascot" className="w-40 drop-shadow-xl rotate-[10deg] scale-x-[-1]" />
+                    <img src="/images/characters/anak3.png" alt="Student Mascot" className="w-32 drop-shadow-xl scale-x-[-1]" />
                 </motion.div>
 
                 <div className="flex items-center gap-4 mb-10">

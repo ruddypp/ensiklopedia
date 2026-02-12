@@ -1,4 +1,4 @@
-const VideoEmbed = ({ url, title }) => {
+const VideoEmbed = ({ url, title, className = "" }) => {
     if (!url) return null;
 
     // Simple parser for YouTube URLs
@@ -13,7 +13,7 @@ const VideoEmbed = ({ url, title }) => {
     };
 
     return (
-        <div className="rounded-xl overflow-hidden shadow-sm border border-border bg-black aspect-video relative">
+        <div className={`rounded-xl overflow-hidden shadow-sm border border-border bg-black aspect-video relative w-full ${className}`}>
             <iframe
                 src={getEmbedUrl(url)}
                 title={title || 'Video Pembelajaran'}

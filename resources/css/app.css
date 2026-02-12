@@ -21,16 +21,16 @@
     --pc: 0 0% 100%;
     /* Text on primary: White */
 
-    /* Backgrounds: STRICTLY WHITE */
-    --color-base-100: 0 0% 100%;
-    /* White */
-    --b1: 0 0% 100%;
-    --color-base-200: 0 0% 100%;
-    /* FORCE White (was gray) */
-    --b2: 0 0% 100%;
-    --color-base-300: 0 0% 100%;
-    /* FORCE White */
-    --b3: 0 0% 100%;
+    /* Backgrounds: Lavender Mist (Bright but not White) */
+    --color-base-100: 270 100% 99%;
+    /* #FBF7FF */
+    --b1: 270 100% 99%;
+    --color-base-200: 270 100% 99%;
+    /* FORCE Lavender Mist */
+    --b2: 270 100% 99%;
+    --color-base-300: 270 100% 99%;
+    /* FORCE Lavender Mist */
+    --b3: 270 100% 99%;
 
     --color-base-content: 270 10% 20%;
     /* Dark Purple/Gray Text */
@@ -47,17 +47,17 @@
     --ring: #8b5cf6;
 
     /* Shadcn Overrides */
-    --background: 0 0% 100%;
+    --background: 270 100% 99%;
     --foreground: 270 10% 20%;
-    --card: 0 0% 100%;
+    --card: 270 100% 99%;
     --card-foreground: 270 10% 20%;
-    --popover: 0 0% 100%;
+    --popover: 270 100% 99%;
     --popover-foreground: 270 10% 20%;
 }
 
 /* Hard reset for body */
 body {
-    background-color: #ffffff !important;
+    background-color: #FBF7FF !important;
     color: #1e1b4b !important;
     /* Very dark purple text */
 }
