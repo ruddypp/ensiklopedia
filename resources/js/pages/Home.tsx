@@ -55,7 +55,7 @@ const Home = () => {
                             Jelajahi kekayaan budaya Madura melalui kacamata sains modern. Temukan keajaiban di balik Batik, Rengginang, dan tradisi lokal lainnya.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up delay-300">
-                            <button onClick={scrollToContent} className="btn bg-white text-primary border-none hover:bg-primary/5 btn-lg rounded-full shadow-xl gap-3 px-8 hover:scale-105 transition-transform group">
+                            <button onClick={scrollToContent} className="btn bg-base-100 text-primary border-none hover:bg-primary/5 btn-lg rounded-full shadow-xl gap-3 px-8 hover:scale-105 transition-transform group">
                                 Mulai Petualangan <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </button>
                             <Link to="/about" className="btn btn-ghost btn-lg rounded-full gap-2 px-8 hover:bg-primary/5 text-primary">
@@ -103,7 +103,7 @@ const Home = () => {
             {/* 3. Tujuan & 4. Target Pengguna - DaisyUI Cards Side-by-Side */}
             <section className="grid md:grid-cols-2 gap-8 container mx-auto px-4">
                 {/* Tujuan */}
-                <div className="card bg-white text-base-content border-none shadow-xl group hover:shadow-2xl transition-all">
+                <div className="card bg-base-100 text-base-content border-none shadow-xl group hover:shadow-2xl transition-all">
                     <div className="card-body items-center text-center">
                         <div className="p-4 bg-primary/10 text-primary rounded-full mb-2 group-hover:bg-primary group-hover:text-white transition-colors">
                             <Star className="w-8 h-8" />
@@ -116,7 +116,7 @@ const Home = () => {
                 {/* Target */}
                 <div className="card bg-primary/5 text-base-content shadow-xl border-none hover:shadow-2xl transition-all">
                     <div className="card-body items-center text-center">
-                        <div className="p-4 bg-white text-primary shadow-sm rounded-full mb-2">
+                        <div className="p-4 bg-base-100 text-primary shadow-sm rounded-full mb-2">
                             <Users className="w-8 h-8" />
                         </div>
                         <h2 className="card-title text-2xl text-primary">Untuk Siapa?</h2>
@@ -188,7 +188,7 @@ const Home = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {/* Step 1 */}
-                        <div className="card bg-white shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
+                        <div className="card bg-base-100 shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
                             <div className="card-body items-center text-center p-8">
                                 <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                                     <Search className="w-8 h-8" />
@@ -199,7 +199,7 @@ const Home = () => {
                         </div>
 
                         {/* Step 2 */}
-                        <div className="card bg-white shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
+                        <div className="card bg-base-100 shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
                             <div className="card-body items-center text-center p-8">
                                 <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                                     <BookOpen className="w-8 h-8" />
@@ -210,7 +210,7 @@ const Home = () => {
                         </div>
 
                         {/* Step 3 */}
-                        <div className="card bg-white shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
+                        <div className="card bg-base-100 shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
                             <div className="card-body items-center text-center p-8">
                                 <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                                     <PlayCircle className="w-8 h-8" />
@@ -221,7 +221,7 @@ const Home = () => {
                         </div>
 
                         {/* Step 4 */}
-                        <div className="card bg-white shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
+                        <div className="card bg-base-100 shadow-xl hover:-translate-y-2 transition-transform duration-300 border-none group">
                             <div className="card-body items-center text-center p-8">
                                 <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
                                     <Lightbulb className="w-8 h-8" />

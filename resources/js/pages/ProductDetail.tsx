@@ -94,95 +94,97 @@ const ProductDetail = () => {
                 </Link>
             </motion.nav>
 
-            {/* Header / Pembuka (DaisyUI Hero) */}
-            <header className="hero min-h-[400px] bg-base-100 relative overflow-hidden mb-12">
-                {/* No Decorative Background Elements - Clean White */}
-                <div className="hero-content flex-col lg:flex-row-reverse gap-12 max-w-7xl w-full z-10 px-6">
-                    {/* Product Image */}
-                    <motion.div
-                        initial={{ x: 50, opacity: 0, rotate: 2 }}
-                        animate={{ x: 0, opacity: 1, rotate: -2 }}
-                        whileHover={{ rotate: 0, scale: 1.02 }}
-                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        className="max-w-md w-full"
-                    >
-                        {product.cover_image ? (
-                            <img
-                                src={product.cover_image.startsWith('images/') ? `/${product.cover_image}` : `/storage/${product.cover_image}`}
-                                alt={product.name}
-                                className="mask mask-squircle shadow-2xl w-full object-cover border-4 border-base-100 bg-base-100"
-                            />
-                        ) : (
-                            <div className="mask mask-squircle w-full shadow-2xl aspect-[4/3] flex items-center justify-center bg-base-300 text-base-content/50">
-                                <BookOpen className="w-24 h-24" />
-                            </div>
-                        )}
-                    </motion.div>
+            {/* Header / Pembuka */}
+            <header className="hero min-h-[500px] relative overflow-hidden mb-0 pt-8">
+                <div className="hero-content flex-col lg:flex-row-reverse gap-8 lg:gap-12 max-w-7xl w-full z-10 px-4 md:px-8">
 
-                    {/* Text Content */}
-                    <div className="text-center lg:text-left space-y-6 max-w-2xl">
+                    {/* Product Image - EVEN BIGGER (60% width on desktop) */}
+                    <div className="lg:w-[60%] w-full relative z-10 flex justify-center lg:justify-end">
                         <motion.div
-                            initial={{ y: -20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            className="badge badge-lg p-4 gap-2 shadow-sm bg-primary/10 text-primary border-primary/20"
-                        >
-                            <PlayCircle className="w-4 h-4" />
-                            Ayo Belajar Bersama!
-                        </motion.div>
-
-                        <motion.h1
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            transition={{ type: "spring", stiffness: 100 }}
-                            className="text-5xl lg:text-7xl font-serif font-black uppercase text-primary"
+                            transition={{ duration: 0.5 }}
+                            className="w-full h-full"
                         >
-                            {product.name}
-                        </motion.h1>
+                            {product.cover_image ? (
+                                <img
+                                    src={product.cover_image.startsWith('images/') ? `/${product.cover_image}` : `/storage/${product.cover_image}`}
+                                    alt={product.name}
+                                    className="w-full h-auto object-cover shadow-2xl rounded-[2.5rem] border-4 border-white/50 bg-white"
+                                />
+                            ) : (
+                                <div className="w-full aspect-video flex items-center justify-center bg-base-300 text-base-content/50 border-4 border-white rounded-[2.5rem] shadow-xl">
+                                    <BookOpen className="w-32 h-32" />
+                                </div>
+                            )}
+                        </motion.div>
+                    </div>
 
+                    {/* Text Content - SMALLER (40% width on desktop) */}
+                    <div className="lg:w-[40%] w-full text-center lg:text-left space-y-6 relative z-20">
+                        {/* Title Section - Slightly Smaller */}
+                        <div>
+                            <motion.h1
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                className="text-5xl lg:text-7xl font-black text-primary tracking-tighter leading-tight mb-4 font-serif"
+                            >
+                                {product.name}
+                            </motion.h1>
+                            <div className="h-1.5 w-24 bg-secondary rounded-full mx-auto lg:mx-0"></div>
+                        </div>
+
+                        {/* Description - Smaller Text */}
                         {sections.pembuka && (
                             <motion.div
-                                initial={{ x: -20, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
                                 transition={{ delay: 0.2 }}
-                                className="prose prose-lg prose-stone leading-relaxed font-medium bg-base-100/60 p-6 rounded-box"
+                                className="text-lg md:text-xl font-medium leading-relaxed text-stone-700"
                                 dangerouslySetInnerHTML={{ __html: sections.pembuka.content }}
                             />
                         )}
 
-                        <div className="flex justify-center lg:justify-start relative group">
-                            {/* Removed Rabbit/Owl mascots close to button to clean up */}
-
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
+                        >
+                            <button
                                 onClick={() => {
                                     document.getElementById('materi-tabs')?.scrollIntoView({ behavior: 'smooth' });
                                     setActiveTab('identitas');
                                 }}
-                                className="btn bg-white text-primary border-none hover:bg-primary/5 btn-lg rounded-full shadow-xl gap-3 relative z-10"
+                                className="btn bg-purple-600 hover:bg-purple-700 text-white border-none btn-xl rounded-full px-10 text-lg h-14 shadow-lg hover:shadow-purple-500/30 hover:scale-105 transition-all"
                             >
-                                Mulai Baca <ArrowLeft className="w-6 h-6 rotate-[-90deg]" />
-                            </motion.button>
-                        </div>
+                                Mulai Baca
+                            </button>
+                        </motion.div>
                     </div>
                 </div>
             </header>
 
-            {/* Main Content Tabs (DaisyUI Tabs) */}
-            <div id="materi-tabs" className="max-w-7xl mx-auto px-4 md:px-6">
+            {/* Main Content Tabs */}
+            <div id="materi-tabs" className="max-w-7xl mx-auto px-4 md:px-8 relative z-30">
 
-                {/* DaisyUI Tabs Boxed */}
-                <div className="flex justify-center mb-8 overflow-x-auto pb-4">
-                    <div className="tabs tabs-boxed bg-base-200/50 p-2 rounded-2xl gap-2">
+                {/* Tabs Navigation - CLEAN & VISIBLE */}
+                <div className="bg-white p-2 rounded-full shadow-[0_4px_20px_rgb(0,0,0,0.08)] border border-stone-200 inline-block w-full md:w-auto mx-auto mb-8 relative z-40">
+                    <div className="flex flex-wrap justify-center gap-2">
                         {tabs.map((tab) => (
-                            <a
+                            <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`tab tab-lg h-auto py-3 px-6 rounded-xl transition-all duration-300 gap-2 font-bold ${activeTab === tab.id ? 'tab-active bg-primary text-primary-foreground shadow-md scale-105' : 'hover:bg-base-200'}`}
+                                className={`
+                                    flex items-center gap-3 px-6 py-3 rounded-full font-bold transition-all duration-200 border-2
+                                    ${activeTab === tab.id
+                                        ? 'bg-purple-600 border-purple-600 text-white shadow-md'
+                                        : 'bg-transparent border-transparent text-stone-500 hover:bg-stone-50 hover:text-purple-600 hover:border-purple-100'}
+                                `}
                             >
                                 {tab.icon}
-                                {tab.label}
-                            </a>
+                                <span>{tab.label}</span>
+                            </button>
                         ))}
                     </div>
                 </div>
@@ -272,23 +274,86 @@ const ProductDetail = () => {
                                         </motion.div>
                                     )}
 
-                                    {/* Main Text Content */}
-                                    <div className="max-w-4xl mx-auto">
-                                        <div
-                                            className={`
-                                                prose prose-xl prose-stone max-w-none text-base-content
-                                                prose-headings:text-primary prose-headings:font-bold
-                                                prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                                                prose-strong:text-base-content
-                                                prose-p:leading-relaxed prose-li:marker:text-primary
-                                                ${activeTab === 'proses' ? 'process-content' : ''}
-                                                ${activeTab === 'identitas' ? 'identity-content' : ''}
-                                                ${activeTab === 'ipas' ? 'ipas-content' : ''}
-                                                ${activeTab === 'bahan' ? 'bahan-content' : ''}
-                                                ${activeTab === 'dampak' ? 'dampak-content' : ''}
-                                            `}
-                                            dangerouslySetInnerHTML={{ __html: activeSection.content }}
-                                        />
+                                    {/* Main Text Content - Fun Notebook Style */}
+                                    <div className="relative max-w-5xl mx-auto mt-16">
+
+                                        {/* Mascots / Characters Decoration */}
+                                        <div className="absolute -top-24 -left-12 w-25 hidden xl:block z-10 pointer-events-none">
+                                            <img src="/images/characters/kakek.png" alt="Teacher" className="w-full drop-shadow-xl rotate-[-5deg]" />
+                                        </div>
+                                        <div className="absolute -bottom-10 -right-16 w-36 hidden xl:block z-10 pointer-events-none">
+                                            <img src="/images/characters/anak3.png" alt="Student" className="w-full drop-shadow-xl rotate-[10deg]" />
+                                        </div>
+
+                                        {/* Notebook Page Container */}
+                                        <div className="bg-base-100 relative p-8 md:p-16 rounded-[2px] shadow-[5px_5px_15px_rgba(139,92,246,0.15)] transform rotate-[-1deg]">
+
+                                            {/* Notebook Visual Effects (Holes, Tape, etc) */}
+                                            <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-primary/5 to-transparent rounded-t-[2px]"></div>
+                                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-primary/20 shadow-sm rotate-1 transform backdrop-blur-sm"></div> {/* Tape - Purple Tint */}
+
+                                            {/* Binder Holes (Left Side) */}
+                                            <div className="absolute left-4 top-0 bottom-0 flex flex-col justify-evenly h-full py-12">
+                                                {[...Array(6)].map((_, i) => (
+                                                    <div key={i} className="w-6 h-6 rounded-full bg-base-100 shadow-inner ring-2 ring-primary/20"></div>
+                                                ))}
+                                            </div>
+
+                                            {/* Content Area (Shifted slightly right for holes) */}
+                                            <div className="ml-8 md:ml-12">
+
+                                                {/* Fun Header Decoration */}
+                                                <div className="flex items-center gap-4 mb-8 border-b-4 border-dashed border-primary/30 pb-4">
+                                                    <div className="text-4xl">📝</div>
+                                                    <h3 className="text-2xl md:text-3xl font-black text-primary font-serif tracking-wide">
+                                                        Catatan Penting
+                                                    </h3>
+                                                </div>
+
+                                                <div
+                                                    className={`
+                                                        prose prose-lg md:prose-xl prose-stone max-w-none text-stone-700
+                                                        
+                                                        // Headings
+                                                        prose-headings:font-black prose-headings:text-secondary 
+                                                        prose-headings:font-serif prose-headings:tracking-tight
+                                                        prose-h2:text-4xl prose-h2:mt-8 prose-h2:mb-4
+                                                        prose-h3:text-2xl prose-h3:text-accent
+                                                        
+                                                        // Paragraphs
+                                                        prose-p:leading-relaxed prose-p:font-medium
+                                                        
+                                                        // Blockquotes (Sticky Note Style - Purple)
+                                                        prose-blockquote:bg-purple-100 prose-blockquote:p-6 prose-blockquote:rounded-xl 
+                                                        prose-blockquote:border-l-0 prose-blockquote:shadow-md prose-blockquote:rotate-1 
+                                                        prose-blockquote:not-italic prose-blockquote:font-bold prose-blockquote:text-purple-900
+                                                        prose-blockquote:relative prose-blockquote:mx-4
+                                                        
+                                                        // Lists
+                                                        prose-li:marker:content-['⭐️'] prose-li:marker:text-primary prose-ul:pl-6
+                                                        
+                                                        // Strong/Bold
+                                                        prose-strong:text-primary prose-strong:bg-primary/10 prose-strong:px-1 prose-strong:rounded
+                                                        
+                                                        // Images (Polaroid Style)
+                                                        prose-img:border-8 prose-img:border-white prose-img:shadow-lg prose-img:rotate-2 prose-img:rounded-md
+                                                        
+                                                        ${activeTab === 'proses' ? 'process-content' : ''}
+                                                        ${activeTab === 'identitas' ? 'identity-content' : ''}
+                                                        ${activeTab === 'ipas' ? 'ipas-content' : ''}
+                                                        ${activeTab === 'bahan' ? 'bahan-content' : ''}
+                                                        ${activeTab === 'dampak' ? 'dampak-content' : ''}
+                                                    `}
+                                                    dangerouslySetInnerHTML={{ __html: activeSection.content }}
+                                                />
+
+                                                {/* Fun Footer Element */}
+                                                <div className="mt-12 pt-8 border-t-2 border-stone-100 flex justify-between items-center text-stone-400 font-handwriting italic">
+                                                    <span>✨ Ayo Semangat Belajar!</span>
+                                                    <span>{product.name} • {tabs.find(t => t.id === activeTab)?.label}</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </motion.div>
                             ) : (
