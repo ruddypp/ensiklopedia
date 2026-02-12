@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+@plugin 'daisyui';
+@plugin 'tailwindcss-animate';
+
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/500.css';
+@import '@fontsource/outfit/600.css';
+@import '@fontsource/outfit/700.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* FORCE LIGHT THEME & PURPLE PALETTE */
+:root {
+    color-scheme: light;
+
+    /* Primary: Deep Vivid Purple */
+    --color-primary: 270 100% 60%;
+    /* #8b5cf6 */
+    --primary: 270 100% 60%;
+    --p: 270 100% 60%;
+    --pc: 0 0% 100%;
+    /* Text on primary: White */
+
+    /* Backgrounds: STRICTLY WHITE */
+    --color-base-100: 0 0% 100%;
+    /* White */
+    --b1: 0 0% 100%;
+    --color-base-200: 0 0% 100%;
+    /* FORCE White (was gray) */
+    --b2: 0 0% 100%;
+    --color-base-300: 0 0% 100%;
+    /* FORCE White */
+    --b3: 0 0% 100%;
+
+    --color-base-content: 270 10% 20%;
+    /* Dark Purple/Gray Text */
+    --bc: 270 10% 20%;
+
+    /* Secondary: Very light purple for accents if needed */
+    --color-secondary: 270 50% 98%;
+    --s: 270 50% 98%;
+    --sc: 270 100% 20%;
+
+    /* Borders: TRANSPARENT */
+    --border: transparent;
+    --input: #f3f4f6;
+    --ring: #8b5cf6;
+
+    /* Shadcn Overrides */
+    --background: 0 0% 100%;
+    --foreground: 270 10% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 270 10% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 10% 20%;
+}
+
+/* Hard reset for body */
+body {
+    background-color: #ffffff !important;
+    color: #1e1b4b !important;
+    /* Very dark purple text */
+}
+
+/* Disable dark mode definitions completely */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: light !important;
+    }
+}
+
+@theme {
+    --font-display: 'Outfit', sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+    --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+    --radius-lg: 1.5rem;
+    --radius-md: 1rem;
+    --radius-sm: 0.5rem;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-border: transparent;
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+}
