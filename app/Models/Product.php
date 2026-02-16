@@ -13,7 +13,7 @@ class Product extends Model
         'slug',
         'description',
         'cover_image',
-        'color_theme',
+
     ];
 
     public function sections(): HasMany

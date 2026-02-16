@@ -9,88 +9,72 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* FORCE LIGHT THEME & PURPLE PALETTE */
 :root {
     color-scheme: light;
 
-    /* Primary: Deep Vivid Purple */
-    --color-primary: 270 100% 60%;
-    /* #8b5cf6 */
-    --primary: 270 100% 60%;
-    --p: 270 100% 60%;
+    /* ================= PRIMARY ================= */
+    /* Blue Education - Primary */
+    --color-primary: 217 91% 60%;
+    /* #3B82F6 - vibrant blue */
+    --primary: 217 91% 60%;
+    --p: 217 91% 60%;
     --pc: 0 0% 100%;
-    /* Text on primary: White */
 
-    /* Backgrounds: Warm Paper (Solarized Light-ish) */
-    --color-base-100: 44 60% 94%;
-    /* #FDF6E3 */
-    --b1: 44 60% 94%;
-    --color-base-200: 44 60% 90%;
-    /* Slightly darker */
-    --b2: 44 60% 90%;
-    --color-base-300: 44 30% 85%;
-    /* Darker still */
-    --b3: 44 30% 85%;
+    /* Header Blue - Deeper */
+    --header-bg: 222 47% 15%;
+    /* Deep Blue #0f172a / #1e3a8a mix */
 
-    --color-base-content: 270 10% 20%;
-    /* Dark Purple/Gray Text */
-    --bc: 270 10% 20%;
+    /* ================= SECONDARY ================= */
+    /* Yellow Joy - Secondary */
+    --color-secondary: 45 93% 47%;
+    /* #FBBF24 - vibrant yellow/amber */
+    --secondary: 45 93% 47%;
+    --s: 45 93% 47%;
+    --sc: 0 0% 10%;
+    /* Dark text for contrast on yellow */
 
-    /* Secondary: Very light purple for accents if needed */
-    --color-secondary: 270 50% 98%;
-    --s: 270 50% 98%;
-    --sc: 270 100% 20%;
+    /* ================= ACCENT ================= */
+    /* Orange Fun - Accent */
+    --color-accent: 25 95% 53%;
+    /* #F97316 - vibrant orange */
+    --accent: 25 95% 53%;
+    --a: 25 95% 53%;
+    --ac: 0 0% 100%;
 
-    /* Borders: TRANSPARENT */
-    --border: transparent;
-    --input: #f3f4f6;
-    --ring: #6243aa;
+    /* ================= SUCCESS / NATURE ================= */
+    /* Green Growth - Success */
+    --color-success: 142 71% 45%;
+    /* #22C55E - vibrant green */
+    --success: 142 71% 45%;
+    --su: 142 71% 45%;
+    --suc: 0 0% 100%;
+
+    /* ================= BACKGROUND ================= */
+    --color-base-100: 0 0% 100%;
+    --b1: 0 0% 100%;
+
+    --color-base-200: 210 100% 98%;
+    /* Slightly cooler white */
+    /* Soft sky */
+    --b2: 210 100% 98%;
+
+    --color-base-300: 210 100% 94%;
+    --b3: 210 100% 94%;
+
+    --color-base-content: 222 47% 20%;
+    /* Dark blue-gray text */
+    --bc: 222 47% 20%;
+
+    /* Borders */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
 
     /* Shadcn Overrides */
-    --background: 44 60% 94%;
-    --foreground: 270 10% 20%;
-    --card: 44 60% 94%;
-    --card-foreground: 270 10% 20%;
-    --popover: 44 60% 94%;
-    --popover-foreground: 270 10% 20%;
-}
-
-/* Hard reset for body */
-body {
-    background-color: #FDF6E3 !important;
-    color: #1e1b4b !important;
-    /* Very dark purple text */
-}
-
-/* Disable dark mode definitions completely */
-@media (prefers-color-scheme: dark) {
-    :root {
-        color-scheme: light !important;
-    }
-}
-
-@theme {
-    --font-display: 'Outfit', sans-serif;
-    --font-heading: 'Outfit', sans-serif;
-    --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
-
-    --radius-lg: 1.5rem;
-    --radius-md: 1rem;
-    --radius-sm: 0.5rem;
-
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-border: transparent;
-    --color-input: var(--input);
-    --color-ring: var(--ring);
+    --background: 0 0% 100%;
+    --foreground: 222 47% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 20%;
 }

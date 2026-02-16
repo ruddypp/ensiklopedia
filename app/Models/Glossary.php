@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Glossary extends Model
 {
     protected $fillable = [
-        'term',
-        'definition',
+        'title',
+        'description',
         'image',
+        'category',
     ];
 }

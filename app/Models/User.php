@@ -18,7 +18,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->role === 'admin' || $this->role === 'guru';
+        return $this->role === 'admin';
     }
 
     public function isAdmin(): bool
@@ -26,10 +26,7 @@ class User extends Authenticatable implements FilamentUser
         return $this->role === 'admin';
     }
 
-    public function isGuru(): bool
-    {
-        return $this->role === 'guru';
-    }
+
 
     /**
      * The attributes that are mass assignable.

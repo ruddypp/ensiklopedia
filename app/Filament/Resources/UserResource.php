@@ -33,10 +33,9 @@ class UserResource extends Resource
                 Forms\Components\Select::make('role')
                     ->options([
                         'admin' => 'Admin',
-                        'guru' => 'Guru',
                     ])
                     ->required()
-                    ->default('guru'),
+                    ->default('admin'),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
@@ -58,7 +57,6 @@ class UserResource extends Resource
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'admin' => 'danger',
-                        'guru' => 'success',
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

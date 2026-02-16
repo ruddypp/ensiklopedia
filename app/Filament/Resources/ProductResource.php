@@ -33,13 +33,13 @@ class ProductResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->unique(Product::class, 'slug', ignoreRecord: true),
-                    Forms\Components\TextInput::make('color_theme')
-                        ->default('#FFFFFF'),
+
                     Forms\Components\Textarea::make('description')
                         ->columnSpanFull(),
                     Forms\Components\FileUpload::make('cover_image')
                         ->image()
-                        ->directory('products'),
+                        ->directory('products')
+                        ->disk('public'),
                 ]),
                 Forms\Components\Section::make('Sections')->schema([
                     Forms\Components\Repeater::make('sections')
@@ -56,7 +56,10 @@ class ProductResource extends Resource
                                     'dampak' => 'Dampak & Tanggung Jawab',
                                 ])->required(),
                             Forms\Components\RichEditor::make('content'),
-                            Forms\Components\FileUpload::make('image')->image()->directory('sections'),
+                            Forms\Components\FileUpload::make('image')
+                                ->image()
+                                ->directory('sections')
+                                ->disk('public'),
                             Forms\Components\TextInput::make('video_url')->label('Youtube Video URL'),
                         ])
                         ->orderColumn('sort_order')
@@ -75,8 +78,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('cover_image'),
-                Tables\Columns\TextColumn::make('color_theme')
-                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

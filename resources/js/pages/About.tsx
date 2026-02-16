@@ -3,26 +3,26 @@ import { BookOpen, GraduationCap, Users } from 'lucide-react';
 
 const About = () => {
     return (
-        <div className="min-h-screen bg-base-100 font-sans text-base-content pb-16 relative overflow-hidden">
+        <div className="min-h-screen bg-neutral-50 font-sans text-base-content pb-20 relative overflow-hidden">
 
             {/* Header Section - Left Aligned Hero */}
-            <div className="hero bg-base-100 pt-16 pb-12 mb-10 relative overflow-hidden">
-                <div className="hero-content flex-col lg:flex-row justify-between w-full px-6 lg:px-20 gap-12">
+            <div className="hero bg-gradient-to-b from-blue-50 to-white pt-20 pb-24 mb-10 relative overflow-hidden">
+                <div className="hero-content flex-col lg:flex-row justify-between w-full px-6 lg:px-20 gap-12 relative z-10">
 
                     {/* LEFT CONTENT */}
                     <div className="max-w-3xl text-left">
-                        <span className="text-primary font-bold tracking-widest text-sm uppercase mb-3 block">
-                            Tentang Aplikasi
+                        <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-bold tracking-widest text-sm uppercase mb-4">
+                            ✨ Tentang Aplikasi
                         </span>
 
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight">
-                            E-Ensiklopedia <br />
-                            <span className="text-primary">
+                        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight leading-tight text-stone-800">
+                            Ensiklopedia <br />
+                            <span className="text-primary transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
                                 Etnosains Madura
                             </span>
                         </h1>
 
-                        <p className="text-lg md:text-xl text-base-content/70 leading-relaxed max-w-2xl">
+                        <p className="text-lg md:text-xl text-stone-600 leading-relaxed max-w-2xl font-medium">
                             Media pembelajaran interaktif berbasis budaya lokal untuk mendukung
                             pemahaman sains siswa sekolah dasar secara kontekstual dan menyenangkan.
                         </p>
@@ -30,127 +30,74 @@ const About = () => {
 
                     {/* RIGHT HERO VISUAL */}
                     <div className="relative flex justify-center lg:justify-end w-full lg:w-auto">
-                        <div className="absolute w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+                        <div className="absolute w-72 h-72 bg-secondary/20 rounded-full blur-3xl animate-pulse"></div>
 
                         <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full 
                             shadow-[0_20px_60px_rgba(0,0,0,0.15)] 
-                            ring-4 ring-base-100 overflow-hidden">
+                            ring-8 ring-white overflow-hidden border-4 border-primary/20">
 
                             <img
                                 src="/images/characters/teacher-karakter.png"
-                                alt="Leli Lestari"
+                                alt="Teacher Karakter"
                                 className="w-full h-full object-cover scale-125"
                                 style={{ transformOrigin: '42% 20%' }}
                             />
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Developer Identity Card */}
-            <div className="container mx-auto px-4 max-w-4xl mb-14 relative">
-                <div className="card lg:card-side bg-base-100 
-                    shadow-[0_15px_40px_rgba(0,0,0,0.08)]  
-                    overflow-hidden relative">
-
-                    <div className="card-body lg:w-2/3 space-y-4">
-                        <div>
-                            <h2 className="card-title text-3xl font-bold text-primary">
-                                Leli Lestari
-                            </h2>
-                            <p className="text-base-content/70 font-medium">
-                                Mahasiswa PGSD
-                            </p>
-                        </div>
-
-                        <p className="opacity-80">
-                            Berdedikasi untuk mengembangkan inovasi pembelajaran berbasis kearifan lokal.
-                            Aplikasi ini dikembangkan sebagai bagian dari penelitian skripsi tahun 2026.
-                        </p>
-
-                        <div className="stats bg-base-200/50 w-full mt-4 rounded-xl">
-                            <div className="stat place-items-center p-4">
-                                <div className="stat-title text-xs font-bold uppercase tracking-wider">
-                                    Target
-                                </div>
-                                <div className="stat-value text-lg text-primary">
-                                    Kelas V SD
-                                </div>
-                            </div>
-
-                            <div className="stat place-items-center p-4">
-                                <div className="stat-title text-xs font-bold uppercase tracking-wider">
-                                    Tahun
-                                </div>
-                                <div className="stat-value text-lg text-secondary">
-                                    2026
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                {/* Cloud Divider */}
+                <div className="absolute bottom-0 left-0 w-full leading-none text-neutral-50">
+                    <svg className="w-full h-16 md:h-24" preserveAspectRatio="none" viewBox="0 0 1440 320">
+                        <path fill="currentColor" fillOpacity="1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,165.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
                 </div>
             </div>
 
             {/* Goals Section */}
-            <div className="container mx-auto px-4 max-w-5xl relative">
+            <div className="container mx-auto px-6 max-w-6xl relative -mt-10 z-20">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                <motion.div
-                    whileInView={{ y: [0, -5, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -right-8 bottom-0 hidden xl:block z-0 pointer-events-none"
-                >
-                    <img
-                        src="/images/characters/kakek.png"
-                        alt="Kakek Mascot"
-                        className="w-48 drop-shadow-xl opacity-80"
-                    />
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-
-                    <div className="card bg-base-100 rounded-2xl 
-                        shadow-[0_10px_30px_rgba(0,0,0,0.08)] 
-                        hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] 
+                    <div className="card bg-white rounded-[2rem] border-2 border-blue-50 hover:border-blue-200
+                        shadow-xl hover:shadow-2xl hover:shadow-blue-500/10
                         transition-all duration-300 
-                        hover:-translate-y-2">
-                        <div className="card-body items-center text-center">
-                            <div className="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-3">
-                                <BookOpen className="w-6 h-6" />
+                        hover:-translate-y-2 group">
+                        <div className="card-body items-center text-center p-8">
+                            <div className="w-16 h-16 bg-blue-100 text-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <BookOpen className="w-8 h-8" />
                             </div>
-                            <h3 className="card-title text-lg">Budaya & Sains</h3>
-                            <p className="text-sm opacity-80">
+                            <h3 className="card-title text-xl font-bold text-stone-800">Budaya & Sains</h3>
+                            <p className="text-stone-500 font-medium">
                                 Mengintegrasikan pengetahuan asli masyarakat Madura ke dalam konsep ilmiah.
                             </p>
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 rounded-2xl 
-                        shadow-[0_10px_30px_rgba(0,0,0,0.08)] 
-                        hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] 
+                    <div className="card bg-white rounded-[2rem] border-2 border-yellow-50 hover:border-yellow-200
+                        shadow-xl hover:shadow-2xl hover:shadow-yellow-500/10
                         transition-all duration-300 
-                        hover:-translate-y-2">
-                        <div className="card-body items-center text-center">
-                            <div className="w-12 h-12 bg-secondary/20 text-secondary rounded-xl flex items-center justify-center mb-3">
-                                <Users className="w-6 h-6" />
+                        hover:-translate-y-2 group mt-0 md:-mt-8">
+                        <div className="card-body items-center text-center p-8">
+                            <div className="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <Users className="w-8 h-8" />
                             </div>
-                            <h3 className="card-title text-lg">Karakter Siswa</h3>
-                            <p className="text-sm opacity-80">
+                            <h3 className="card-title text-xl font-bold text-stone-800">Karakter Siswa</h3>
+                            <p className="text-stone-500 font-medium">
                                 Menanamkan nilai-nilai luhur budaya Madura seperti kerja keras dan rasa syukur.
                             </p>
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 rounded-2xl 
-                        shadow-[0_10px_30px_rgba(0,0,0,0.08)] 
-                        hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] 
+                    <div className="card bg-white rounded-[2rem] border-2 border-orange-50 hover:border-orange-200
+                        shadow-xl hover:shadow-2xl hover:shadow-orange-500/10
                         transition-all duration-300 
-                        hover:-translate-y-2">
-                        <div className="card-body items-center text-center">
-                            <div className="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-3">
-                                <GraduationCap className="w-6 h-6" />
+                        hover:-translate-y-2 group">
+                        <div className="card-body items-center text-center p-8">
+                            <div className="w-16 h-16 bg-orange-100 text-accent rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <GraduationCap className="w-8 h-8" />
                             </div>
-                            <h3 className="card-title text-lg">Pembelajaran 21</h3>
-                            <p className="text-sm opacity-80">
+                            <h3 className="card-title text-xl font-bold text-stone-800">Pembelajaran 21</h3>
+                            <p className="text-stone-500 font-medium">
                                 Meningkatkan berpikir kritis melalui kegiatan inkuiri dan pengamatan.
                             </p>
                         </div>
