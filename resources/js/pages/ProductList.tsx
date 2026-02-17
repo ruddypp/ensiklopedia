@@ -272,9 +272,17 @@ const ProductList = () => {
             <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="fixed bottom-0 right-4 hidden lg:block z-50 pointer-events-none"
+                className="fixed bottom-0 right-1 hidden lg:block z-50 pointer-events-none"
             >
                 <img src="/images/characters/anak5.png" alt="Student" className="w-32 drop-shadow-xl" />
+            </motion.div>
+
+            <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="fixed bottom-0 left-1 hidden lg:block z-50 pointer-events-none"
+            >
+                <img src="/images/characters/anak4.png" alt="Student" className="w-32 drop-shadow-xl" />
             </motion.div>
 
             {/* ================= GLOSSARY SECTION ================= */}

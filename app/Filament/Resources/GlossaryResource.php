@@ -23,13 +23,20 @@ class GlossaryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('term')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
-                Forms\Components\Textarea::make('definition')
+                Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\Select::make('category')
+                    ->options([
+                        'Sains' => 'Sains',
+                        'Budaya' => 'Budaya',
+                        'Umum' => 'Umum',
+                    ])
+                    ->required(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->directory('glossaries'),
@@ -40,8 +47,15 @@ class GlossaryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('term')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('category')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'Sains' => 'success',
+                        'Budaya' => 'warning',
+                        'Umum' => 'gray',
+                    }),
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

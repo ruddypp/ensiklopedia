@@ -57,11 +57,11 @@ const Home = () => {
                     {/* Left Text */}
                     <div className="text-center md:text-left space-y-6">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1e3a8a] leading-tight tracking-tight drop-shadow-sm">
-                            Belajar Sains & Budaya <br />
-                            <span className="text-gray-700">Menjadi Menyenangkan!</span>
+                            E-Ensiklopedia <br />
+                            <span className="text-gray-700">Etnosains Madura</span>
                         </h1>
                         <p className="text-lg text-gray-600 font-medium max-w-md mx-auto md:mx-0">
-                            Temukan keajaiban alam dan kekayaan tradisi lokal dalam satu genggaman.
+                            Pembelajaran IPAS Berbasis Budaya Lokal untuk Siswa Sekolah Dasar.
                         </p>
                     </div>
 
@@ -202,6 +202,24 @@ const Home = () => {
                     )}
                 </div>
             </section>
+
+
+            {/* Decorative Mascots */}
+            <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="fixed bottom-0 right-0 hidden lg:block z-50 pointer-events-none"
+            >
+                <img src="/images/characters/anak5.png" alt="Student" className="w-32 drop-shadow-xl" />
+            </motion.div>
+
+            <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="fixed bottom-0 left-0 hidden lg:block z-50 pointer-events-none"
+            >
+                <img src="/images/characters/anak4.png" alt="Student" className="w-32 drop-shadow-xl" />
+            </motion.div>
 
             {/* ================= GLOSSARY SECTION ================= */}
             <section id="glossary-section" className="px-6 mb-12">

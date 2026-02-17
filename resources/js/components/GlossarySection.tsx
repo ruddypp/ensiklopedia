@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, ChevronRight, ChevronLeft, Menu, Loader2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import api from '../services/api';
 
 const CATEGORIES = [
@@ -15,6 +15,7 @@ export const GlossarySection = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [selectedItem, setSelectedItem] = useState<any | null>(null);
 
     const itemsPerPage = 2; // As seen in image (2 items visible)
 
@@ -80,11 +81,17 @@ export const GlossarySection = () => {
                                 key={item.id}
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                className="flex gap-6 items-start p-4 hover:bg-blue-50/50 rounded-2xl transition-all group"
+                                onClick={() => setSelectedItem(item)}
+                                className="flex gap-6 items-start p-4 hover:bg-blue-50/50 rounded-2xl transition-all group cursor-pointer"
                             >
                                 <div className="w-24 h-24 md:w-32 md:h-24 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0 shadow-sm border border-gray-100 group-hover:shadow-md transition-all">
                                     <img
-                                        src={item.image.startsWith('http') || item.image.startsWith('/') ? item.image : `/${item.image}`}
+                                        src={
+                                            item.image.startsWith('http') ? item.image :
+                                                item.image.startsWith('/') ? item.image :
+                                                    item.image.startsWith('images/') ? `/${item.image}` :
+                                                        `/storage/${item.image}`
+                                        }
                                         alt={item.title}
                                         className="w-full h-full object-cover"
                                         onError={(e) => {
@@ -203,6 +210,85 @@ export const GlossarySection = () => {
                 </div>
 
             </div>
+
+            {/* Modal Detail */}
+            <AnimatePresence>
+                {selectedItem && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center pt-20 justify-center bg-black/50 backdrop-blur-sm p-4"
+                        onClick={() => setSelectedItem(null)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="bg-white rounded-[1.5rem] shadow-2xl w-full max-w-md overflow-hidden flex flex-col max-h-[85vh]"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Modal Header - Window Style */}
+                            <div className="bg-[#fef9c3] px-5 py-3 flex items-center justify-between border-b-2 border-[#fde68a] shrink-0">
+                                <h3 className="text-lg font-black text-[#1e3a8a] tracking-tight truncate">
+                                    Detail Glosarium
+                                </h3>
+                                <div className="flex gap-1.5 bg-[#faebd7] px-2.5 py-1 rounded-full border border-[#fde68a]">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-orange-400"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-blue-400"></div>
+                                </div>
+                            </div>
+
+                            {/* Modal Content */}
+                            <div className="p-5 md:p-6 overflow-y-auto custom-scrollbar">
+                                <div className="w-full h-40 md:h-48 bg-gray-100 rounded-xl overflow-hidden mb-4 border-2 border-white shadow-md shrink-0">
+                                    <img
+                                        src={
+                                            selectedItem.image.startsWith('http') ? selectedItem.image :
+                                                selectedItem.image.startsWith('/') ? selectedItem.image :
+                                                    selectedItem.image.startsWith('images/') ? `/${selectedItem.image}` :
+                                                        `/storage/${selectedItem.image}`
+                                        }
+                                        alt={selectedItem.title}
+                                        className="w-full h-full object-contain bg-white"
+                                        onError={(e) => {
+                                            e.currentTarget.src = 'https://placehold.co/400x300?text=' + (selectedItem.title ? selectedItem.title[0] : 'G');
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="space-y-3">
+                                    <div>
+                                        <h2 className="text-xl font-black text-[#1e3a8a] mb-1">{selectedItem.title}</h2>
+                                        {selectedItem.category && (
+                                            <span className="inline-block px-2.5 py-0.5 bg-blue-50 text-[#1e3a8a] text-[10px] font-bold rounded-full border border-blue-100">
+                                                {selectedItem.category}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="prose prose-sm prose-stone max-w-none">
+                                        <p className="text-gray-700 leading-relaxed whitespace-pre-line text-sm">
+                                            {selectedItem.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Modal Footer */}
+                            <div className="bg-gray-50 px-5 py-3 flex justify-end border-t border-gray-100 shrink-0">
+                                <button
+                                    onClick={() => setSelectedItem(null)}
+                                    className="btn bg-[#1e3a8a] hover:bg-blue-800 text-white border-0 px-6 py-2 h-auto min-h-0 rounded-xl font-bold text-sm"
+                                >
+                                    Tutup
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

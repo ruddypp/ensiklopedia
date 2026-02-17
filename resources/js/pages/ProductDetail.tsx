@@ -33,6 +33,25 @@ const ProductDetail = () => {
         fetchProduct();
     }, [slug]);
 
+    const [showKakek, setShowKakek] = useState(true);
+    const [showIbu, setShowIbu] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition < 100) {
+                setShowKakek(true);
+                setShowIbu(false);
+            } else {
+                setShowKakek(false);
+                setShowIbu(true);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen bg-[#f0f4f8]">
@@ -196,6 +215,25 @@ const ProductDetail = () => {
                 <section id="glossary-section" className="px-6 mb-12">
                     <GlossarySection />
                 </section>
+            </motion.div>
+
+            {/* Decorative Mascots */}
+            <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: showKakek ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+                className="fixed top-24 right-0 hidden xl:block z-50 pointer-events-none"
+            >
+                <img src="/images/characters/kakek.png" alt="Kakek" className="w-37 drop-shadow-xl" />
+            </motion.div>
+
+            <motion.div
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: showIbu ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+                className="fixed bottom-22 left-0 hidden xl:block z-50 pointer-events-none"
+            >
+                <img src="/images/characters/ibu.png" alt="Ibu" className="w-31 drop-shadow-xl" />
             </motion.div>
         </div>
 
