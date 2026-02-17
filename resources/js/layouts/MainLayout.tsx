@@ -62,7 +62,6 @@ const MainLayout = () => {
             <nav className="sticky top-0 z-50 w-full bg-[#1e3a8a] shadow-md transition-all border-b-4 border-orange-500">
                 <div className="container px-4 md:px-8 mx-auto h-16 flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-2 font-bold text-xl text-white">
-                        <BookOpen className="h-6 w-6" />
                         <span>E-Ensiklopedia</span>
                     </Link>
 

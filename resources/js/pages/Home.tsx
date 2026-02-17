@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, ArrowRight, Star, Heart, Shield, Users, Search, Leaf, Map, Book } from 'lucide-react';
 import { GlossarySection } from '../components/GlossarySection';
+import { HeroCarousel } from '../components/HeroCarousel';
 import api from '../services/api';
 
 const Home = () => {
@@ -17,7 +18,7 @@ const Home = () => {
         const fetchProducts = async () => {
             try {
                 console.log('Fetching products for Home...');
-                const response = await api.get('/products?limit=3');
+                const response = await api.get('/products?limit=4');
                 console.log('Home API Response:', response);
 
                 const data = Array.isArray(response.data.data) ? response.data.data : response.data;
@@ -64,29 +65,22 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Right Illustration (Boy & Girl) */}
+                    {/* Right Illustration (Boy & Girl) -> Hero Carousel */}
                     <div className="relative flex justify-center md:justify-end">
-                        <motion.img
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.8 }}
-                            src="/images/illustration_combined.png"
-                            className="w-full max-w-md object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
-                            alt="Belajar Menyenangkan"
-                            onError={(e) => {
-                                e.currentTarget.onerror = null;
-                                e.currentTarget.src = '/images/hero_illustration.png'; // Fallback
-                            }}
+                        <HeroCarousel
+                            images={[
+                                '/images/hero1.png',
+                                '/images/hero2.png',
+                                '/images/hero3.png',
+                                '/images/hero4.png'
+                            ]}
                         />
-                        {/* Decorative Elements from image */}
-                        <div className="absolute top-0 right-10 w-12 h-12 bg-green-100 rounded-full blur-xl -z-10"></div>
-                        <div className="absolute bottom-10 left-10 w-16 h-16 bg-yellow-100 rounded-full blur-xl -z-10"></div>
                     </div>
                 </div>
             </div>
 
             {/* ================= 3 ACTION BUTTONS ================= */}
-            <div className="container mx-auto px-6 relative z-10 -mt-8 mb-16">
+            <div className="container mx-auto px-6 relative z-10 mt-8 mb-16">
                 <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
                     {/* Button 1: Sains Alam (Orange) */}
@@ -118,19 +112,18 @@ const Home = () => {
                     </Link>
 
                     {/* Button 3: E-Ensiklopedia (Blue) - Scrolls to Glossary */}
-                    <button onClick={scrollToGlossary} className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300 w-full">
+                    <Link to="/products?category=ensiklopedia" className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300">
                         <div className="p-6 flex items-center gap-6 text-white">
                             <div className="w-24 h-24 flex items-center justify-center shrink-0">
                                 <img src="/images/asset3.png" alt="E-Ensiklopedia" className="w-full h-full object-contain drop-shadow-md" />
                             </div>
                             <div className="text-left">
-                                <h3 className="text-2xl font-bold">E-Ensiklopedia</h3>
+                                <h3 className="text-2xl font-bold">Ensiklopedia</h3>
                                 <p className="text-blue-100 text-sm font-medium opacity-90">Kamus Pengetahuan</p>
                             </div>
                         </div>
                         <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
-                    </button>
-
+                    </Link>
                 </div>
             </div>
 
@@ -154,7 +147,7 @@ const Home = () => {
                             <span className="loading loading-spinner text-primary loading-lg"></span>
                         </div>
                     ) : products.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                             {products.map((product, index) => {
                                 const cardColor = getCardColor(index);
                                 return (
@@ -177,7 +170,11 @@ const Home = () => {
                                             </div>
                                         </div>
                                         <div className="p-5 flex flex-col flex-1">
-                                            <h3 className="font-bold text-lg text-gray-800 mb-4 line-clamp-1">{product.name}</h3>
+                                            <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-1">{product.name}</h3>
+
+                                            <p className="text-gray-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+                                                {product.description || 'Pelajari materi ini lebih lanjut dengan penjelasan yang interaktif.'}
+                                            </p>
 
                                             {/* Dashed Lines Decorative */}
                                             <div className="space-y-2 mb-4 opacity-30 mt-auto">

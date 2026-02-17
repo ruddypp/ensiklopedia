@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Loader2, Search, Filter, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import api from '../services/api';
+import { GlossarySection } from '@/components/GlossarySection';
 
 const ProductList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -182,7 +183,7 @@ const ProductList = () => {
 
                     {products.length > 0 ? (
                         <>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
                                 {products.map((product, index) => {
                                     const cardColor = getCardColor(index);
                                     return (
@@ -275,6 +276,12 @@ const ProductList = () => {
             >
                 <img src="/images/characters/anak5.png" alt="Student" className="w-32 drop-shadow-xl" />
             </motion.div>
+
+            {/* ================= GLOSSARY SECTION ================= */}
+            <section id="glossary-section" className="px-6 mb-12">
+                <GlossarySection />
+            </section>
+
         </div>
     );
 };

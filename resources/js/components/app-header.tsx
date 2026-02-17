@@ -72,181 +72,179 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
 
     return (
         <>
-            return (
-            <>
-                <div className="bg-[#1e3a8a] text-primary-foreground shadow-sm relative z-50">
-                    <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
-                        {/* Mobile Menu */}
-                        <div className="lg:hidden">
-                            <Sheet>
-                                <SheetTrigger asChild>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="mr-2 h-[34px] w-[34px] text-primary-foreground hover:bg-primary-foreground/20 hover:text-white"
-                                    >
-                                        <Menu className="h-5 w-5" />
-                                    </Button>
-                                </SheetTrigger>
-                                <SheetContent
-                                    side="left"
-                                    className="flex h-full w-64 flex-col items-stretch justify-between bg-sidebar"
-                                >
-                                    <SheetTitle className="sr-only">
-                                        Navigation Menu
-                                    </SheetTitle>
-                                    <SheetHeader className="flex justify-start text-left">
-                                        <AppLogoIcon className="h-6 w-6 fill-current text-primary" />
-                                    </SheetHeader>
-                                    <div className="flex h-full flex-1 flex-col space-y-4 p-4">
-                                        <div className="flex h-full flex-col justify-between text-sm">
-                                            <div className="flex flex-col space-y-4">
-                                                {mainNavItems.map((item) => (
-                                                    <Link
-                                                        key={item.title}
-                                                        href={item.href}
-                                                        className="flex items-center space-x-2 font-medium text-sidebar-foreground hover:text-primary"
-                                                    >
-                                                        {item.icon && (
-                                                            <item.icon className="h-5 w-5" />
-                                                        )}
-                                                        <span>{item.title}</span>
-                                                    </Link>
-                                                ))}
-                                            </div>
-
-                                            <div className="flex flex-col space-y-4">
-                                                {rightNavItems.map((item) => (
-                                                    <a
-                                                        key={item.title}
-                                                        href={toUrl(item.href)}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex items-center space-x-2 font-medium text-sidebar-foreground hover:text-primary"
-                                                    >
-                                                        {item.icon && (
-                                                            <item.icon className="h-5 w-5" />
-                                                        )}
-                                                        <span>{item.title}</span>
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SheetContent>
-                            </Sheet>
-                        </div>
-
-                        <Link
-                            href={dashboard()}
-                            prefetch
-                            className="flex items-center space-x-2 text-primary-foreground"
-                        >
-                            <AppLogoIcon className="h-6 w-6 fill-current text-white" />
-                            <span className="font-bold text-lg hidden md:block">Budaya Madura</span>
-                        </Link>
-
-                        {/* Desktop Navigation */}
-                        <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
-                            <NavigationMenu className="flex h-full items-stretch">
-                                <NavigationMenuList className="flex h-full items-stretch space-x-2">
-                                    {mainNavItems.map((item, index) => (
-                                        <NavigationMenuItem
-                                            key={index}
-                                            className="relative flex h-full items-center"
-                                        >
-                                            <Link
-                                                href={item.href}
-                                                className={cn(
-                                                    navigationMenuTriggerStyle(),
-                                                    'h-9 cursor-pointer px-3 bg-transparent text-primary-foreground hover:bg-primary-foreground/20 hover:text-white focus:bg-primary-foreground/20 focus:text-white data-[active]:bg-primary-foreground/20 data-[state=open]:bg-primary-foreground/20',
-                                                    isCurrentUrl(item.href) && 'bg-primary-foreground/20 font-bold'
-                                                )}
-                                            >
-                                                {item.icon && (
-                                                    <item.icon className="mr-2 h-4 w-4" />
-                                                )}
-                                                {item.title}
-                                            </Link>
-                                            {isCurrentUrl(item.href) && (
-                                                <div className="absolute bottom-0 left-0 h-1 w-full translate-y-px bg-secondary rounded-t-full"></div>
-                                            )}
-                                        </NavigationMenuItem>
-                                    ))}
-                                </NavigationMenuList>
-                            </NavigationMenu>
-                        </div>
-
-                        <div className="ml-auto flex items-center space-x-2">
-                            <div className="relative flex items-center space-x-1">
+            <div className="bg-[#1e3a8a] text-primary-foreground shadow-sm relative z-50">
+                <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
+                    {/* Mobile Menu */}
+                    <div className="lg:hidden">
+                        <Sheet>
+                            <SheetTrigger asChild>
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="group h-9 w-9 cursor-pointer text-primary-foreground hover:bg-primary-foreground/20 hover:text-white"
+                                    className="mr-2 h-[34px] w-[34px] text-primary-foreground hover:bg-primary-foreground/20 hover:text-white"
                                 >
-                                    <Search className="!size-5 opacity-80 group-hover:opacity-100" />
+                                    <Menu className="h-5 w-5" />
                                 </Button>
-                                <div className="ml-1 hidden gap-1 lg:flex">
-                                    {rightNavItems.map((item) => (
-                                        <TooltipProvider
-                                            key={item.title}
-                                            delayDuration={0}
-                                        >
-                                            <Tooltip>
-                                                <TooltipTrigger>
-                                                    <a
-                                                        href={toUrl(item.href)}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="group inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary-foreground/20 hover:text-white focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-                                                    >
-                                                        <span className="sr-only">
-                                                            {item.title}
-                                                        </span>
-                                                        {item.icon && (
-                                                            <item.icon className="size-5 opacity-80 group-hover:opacity-100" />
-                                                        )}
-                                                    </a>
-                                                </TooltipTrigger>
-                                                <TooltipContent>
-                                                    <p>{item.title}</p>
-                                                </TooltipContent>
-                                            </Tooltip>
-                                        </TooltipProvider>
-                                    ))}
+                            </SheetTrigger>
+                            <SheetContent
+                                side="left"
+                                className="flex h-full w-64 flex-col items-stretch justify-between bg-sidebar"
+                            >
+                                <SheetTitle className="sr-only">
+                                    Navigation Menu
+                                </SheetTitle>
+                                <SheetHeader className="flex justify-start text-left">
+                                    <AppLogoIcon className="h-6 w-6 fill-current text-primary" />
+                                </SheetHeader>
+                                <div className="flex h-full flex-1 flex-col space-y-4 p-4">
+                                    <div className="flex h-full flex-col justify-between text-sm">
+                                        <div className="flex flex-col space-y-4">
+                                            {mainNavItems.map((item) => (
+                                                <Link
+                                                    key={item.title}
+                                                    href={item.href}
+                                                    className="flex items-center space-x-2 font-medium text-sidebar-foreground hover:text-primary"
+                                                >
+                                                    {item.icon && (
+                                                        <item.icon className="h-5 w-5" />
+                                                    )}
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            ))}
+                                        </div>
+
+                                        <div className="flex flex-col space-y-4">
+                                            {rightNavItems.map((item) => (
+                                                <a
+                                                    key={item.title}
+                                                    href={toUrl(item.href)}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center space-x-2 font-medium text-sidebar-foreground hover:text-primary"
+                                                >
+                                                    {item.icon && (
+                                                        <item.icon className="h-5 w-5" />
+                                                    )}
+                                                    <span>{item.title}</span>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button
-                                        variant="ghost"
-                                        className="size-10 rounded-full p-1 hover:bg-primary-foreground/20"
+                            </SheetContent>
+                        </Sheet>
+                    </div>
+
+                    <Link
+                        href={dashboard()}
+                        prefetch
+                        className="flex items-center space-x-2 text-primary-foreground"
+                    >
+                        <AppLogoIcon className="h-6 w-6 fill-current text-white" />
+                        <span className="font-bold text-lg hidden md:block">Budaya Madura</span>
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
+                        <NavigationMenu className="flex h-full items-stretch">
+                            <NavigationMenuList className="flex h-full items-stretch space-x-2">
+                                {mainNavItems.map((item, index) => (
+                                    <NavigationMenuItem
+                                        key={index}
+                                        className="relative flex h-full items-center"
                                     >
-                                        <Avatar className="size-8 overflow-hidden rounded-full border-2 border-primary-foreground/50">
-                                            <AvatarImage
-                                                src={auth.user.avatar}
-                                                alt={auth.user.name}
-                                            />
-                                            <AvatarFallback className="rounded-lg bg-primary-foreground text-primary font-bold">
-                                                {getInitials(auth.user.name)}
-                                            </AvatarFallback>
-                                        </Avatar>
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56" align="end">
-                                    <UserMenuContent user={auth.user} />
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+                                        <Link
+                                            href={item.href}
+                                            className={cn(
+                                                navigationMenuTriggerStyle(),
+                                                'h-9 cursor-pointer px-3 bg-transparent text-primary-foreground hover:bg-primary-foreground/20 hover:text-white focus:bg-primary-foreground/20 focus:text-white data-[active]:bg-primary-foreground/20 data-[state=open]:bg-primary-foreground/20',
+                                                isCurrentUrl(item.href) && 'bg-primary-foreground/20 font-bold'
+                                            )}
+                                        >
+                                            {item.icon && (
+                                                <item.icon className="mr-2 h-4 w-4" />
+                                            )}
+                                            {item.title}
+                                        </Link>
+                                        {isCurrentUrl(item.href) && (
+                                            <div className="absolute bottom-0 left-0 h-1 w-full translate-y-px bg-secondary rounded-t-full"></div>
+                                        )}
+                                    </NavigationMenuItem>
+                                ))}
+                            </NavigationMenuList>
+                        </NavigationMenu>
+                    </div>
+
+                    <div className="ml-auto flex items-center space-x-2">
+                        <div className="relative flex items-center space-x-1">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="group h-9 w-9 cursor-pointer text-primary-foreground hover:bg-primary-foreground/20 hover:text-white"
+                            >
+                                <Search className="!size-5 opacity-80 group-hover:opacity-100" />
+                            </Button>
+                            <div className="ml-1 hidden gap-1 lg:flex">
+                                {rightNavItems.map((item) => (
+                                    <TooltipProvider
+                                        key={item.title}
+                                        delayDuration={0}
+                                    >
+                                        <Tooltip>
+                                            <TooltipTrigger>
+                                                <a
+                                                    href={toUrl(item.href)}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="group inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary-foreground/20 hover:text-white focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                                                >
+                                                    <span className="sr-only">
+                                                        {item.title}
+                                                    </span>
+                                                    {item.icon && (
+                                                        <item.icon className="size-5 opacity-80 group-hover:opacity-100" />
+                                                    )}
+                                                </a>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>{item.title}</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                ))}
+                            </div>
                         </div>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    variant="ghost"
+                                    className="size-10 rounded-full p-1 hover:bg-primary-foreground/20"
+                                >
+                                    <Avatar className="size-8 overflow-hidden rounded-full border-2 border-primary-foreground/50">
+                                        <AvatarImage
+                                            src={auth.user.avatar}
+                                            alt={auth.user.name}
+                                        />
+                                        <AvatarFallback className="rounded-lg bg-primary-foreground text-primary font-bold">
+                                            {getInitials(auth.user.name)}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56" align="end">
+                                <UserMenuContent user={auth.user} />
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
                 </div>
-                {breadcrumbs.length > 1 && (
-                    <div className="flex w-full border-b border-sidebar-border/70 bg-white/50 backdrop-blur-sm">
-                        <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
-                            <Breadcrumbs breadcrumbs={breadcrumbs} />
-                        </div>
+            </div>
+            {breadcrumbs.length > 1 && (
+                <div className="flex w-full border-b border-sidebar-border/70 bg-white/50 backdrop-blur-sm">
+                    <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl">
+                        <Breadcrumbs breadcrumbs={breadcrumbs} />
                     </div>
-                )}
-            </>
-            );
+                </div>
+            )}
+        </>
+    );
 }
