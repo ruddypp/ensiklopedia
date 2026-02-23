@@ -12,4 +12,11 @@ class Glossary extends Model
         'image',
         'category',
     ];
+
+    protected function image(): \Illuminate\Database\Eloquent\Casts\Attribute
+    {
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: fn ($value) => request()->is('api/*') && $value && !str_starts_with($value, 'http') ? url('storage/' . $value) : $value,
+        );
+    }
 }

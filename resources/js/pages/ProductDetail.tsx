@@ -146,12 +146,12 @@ const ProductDetail = () => {
                                     </div>
                                 ) : activeSection?.image ? (
                                     <img
-                                        src={activeSection.image.startsWith('images/') ? `/${activeSection.image}` : `/storage/${activeSection.image}`}
+                                        src={activeSection.image}
                                         alt={activeSection.title}
                                         className="w-full h-full object-cover"
                                         onError={(e) => {
                                             if (product.cover_image) {
-                                                e.currentTarget.src = product.cover_image.startsWith('images/') ? `/${product.cover_image}` : `/storage/${product.cover_image}`;
+                                                e.currentTarget.src = product.cover_image;
                                             } else {
                                                 e.currentTarget.style.display = 'none';
                                             }
@@ -159,7 +159,7 @@ const ProductDetail = () => {
                                     />
                                 ) : product.cover_image ? (
                                     <img
-                                        src={product.cover_image.startsWith('images/') ? `/${product.cover_image}` : `/storage/${product.cover_image}`}
+                                        src={product.cover_image}
                                         alt={product.name}
                                         className="w-full h-full object-cover"
                                     />

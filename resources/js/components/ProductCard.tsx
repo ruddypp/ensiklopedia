@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
                 <figure className="aspect-square relative overflow-hidden bg-base-200">
                     {product.cover_image ? (
                         <img
-                            src={product.cover_image?.startsWith('images/') ? `/${product.cover_image}` : `/storage/${product.cover_image}`}
+                            src={product.cover_image}
                             alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />

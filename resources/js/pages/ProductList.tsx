@@ -211,10 +211,9 @@ const ProductList = () => {
                                             <div className="h-48 bg-gray-200 relative overflow-hidden shrink-0">
                                                 {product.cover_image ? (
                                                     <img
-                                                        src={product.cover_image.startsWith('images/') ? `/${product.cover_image}` : `/storage/${product.cover_image}`}
+                                                        src={product.cover_image}
                                                         alt={product.name}
                                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                                        onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x300/e2e8f0/1e293b?text=' + product.name }}
                                                     />
                                                 ) : (
                                                     <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">

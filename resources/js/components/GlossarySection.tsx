@@ -94,12 +94,7 @@ export const GlossarySection = () => {
                             >
                                 <div className="w-24 h-24 md:w-32 md:h-24 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0 shadow-sm border border-gray-100 group-hover:shadow-md transition-all">
                                     <img
-                                        src={
-                                            item.image.startsWith('http') ? item.image :
-                                                item.image.startsWith('/') ? item.image :
-                                                    item.image.startsWith('images/') ? `/${item.image}` :
-                                                        `/storage/${item.image}`
-                                        }
+                                        src={item.image}
                                         alt={item.title}
                                         className="w-full h-full object-cover"
                                         onError={(e) => {
@@ -252,12 +247,7 @@ export const GlossarySection = () => {
                             <div className="p-5 md:p-6 overflow-y-auto custom-scrollbar">
                                 <div className="w-full h-40 md:h-48 bg-gray-100 rounded-xl overflow-hidden mb-4 border-2 border-white shadow-md shrink-0">
                                     <img
-                                        src={
-                                            selectedItem.image.startsWith('http') ? selectedItem.image :
-                                                selectedItem.image.startsWith('/') ? selectedItem.image :
-                                                    selectedItem.image.startsWith('images/') ? `/${selectedItem.image}` :
-                                                        `/storage/${selectedItem.image}`
-                                        }
+                                        src={selectedItem.image}
                                         alt={selectedItem.title}
                                         className="w-full h-full object-contain bg-white"
                                         onError={(e) => {

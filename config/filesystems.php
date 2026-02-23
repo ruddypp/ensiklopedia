@@ -37,16 +37,18 @@ return [
             'throw' => false,
             'report' => false,
         ],
-
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            // Default ke storage_path() untuk LOKAL.
+            // Di HOSTINGER, tambahkan PUBLIC_STORAGE_PATH=/home/.../public_html/storage ke file .env hostinger.
+            'root' => env('PUBLIC_STORAGE_PATH', storage_path('app/public')), 
+            
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
         ],
-
+        
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
