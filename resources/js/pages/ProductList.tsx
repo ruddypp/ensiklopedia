@@ -1,9 +1,9 @@
+import { motion } from 'framer-motion';
+import { Loader2, Search, Filter, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Loader2, Search, Filter, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
-import { motion } from 'framer-motion';
-import api from '../services/api';
 import { GlossarySection } from '@/components/GlossarySection';
+import api from '../services/api';
 
 const ProductList = () => {
     const [searchParams, setSearchParams] = useSearchParams();

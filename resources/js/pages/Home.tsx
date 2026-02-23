@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, ArrowRight, Star, Heart, Shield, Users, Search, Leaf, Map, Book } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { GlossarySection } from '../components/GlossarySection';
 import { HeroCarousel } from '../components/HeroCarousel';
 import api from '../services/api';

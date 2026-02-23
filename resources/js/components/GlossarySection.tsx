@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Search, ChevronRight, ChevronLeft, Menu, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, ChevronRight, ChevronLeft, Menu, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import api from '../services/api';
 
 const CATEGORIES = [

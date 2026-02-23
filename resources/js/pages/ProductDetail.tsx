@@ -1,11 +1,11 @@
+import { motion, AnimatePresence } from 'framer-motion';
+import { Loader2, ArrowLeft, Search, MoreHorizontal, Leaf, Info, Settings, Book, } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Loader2, ArrowLeft, Search, MoreHorizontal, Leaf, Info, Settings, Book, } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import api from '../services/api';
-import VideoEmbed from '../components/VideoEmbed';
 import { GlossarySection } from '@/components/GlossarySection';
 import PaginatedHtml from '../components/PaginatedHtml';
+import VideoEmbed from '../components/VideoEmbed';
+import api from '../services/api';
 
 const ProductDetail = () => {
     const { slug } = useParams();

@@ -4,10 +4,10 @@ import '../css/app.css';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home';
 import About from './pages/About';
-import ProductList from './pages/ProductList';
+import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
+import ProductList from './pages/ProductList';
 
 const container = document.getElementById('root');
 if (container) {

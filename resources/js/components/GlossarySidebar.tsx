@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { BookOpen, Search, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import api from '../services/api';
 
 const GlossarySidebar = () => {
