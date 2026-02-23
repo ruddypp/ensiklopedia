@@ -140,7 +140,7 @@ const MainLayout = () => {
             <footer className="bg-orange-500 py-6 md:py-0 text-white">
                 <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row px-4 md:px-8 mx-auto">
                     <p className="text-center text-sm leading-loose md:text-left font-medium">
-                        &copy; 2026 E-Ensiklopedia Etnosains Madura.
+                        &copy; 2026 E-Ensiklopedia Etnosains Madura. Hak Cipta Dilindungi Oleh Undang-Undang.
                     </p>
                 </div>
             </footer>

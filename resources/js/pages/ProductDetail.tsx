@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import api from '../services/api';
 import VideoEmbed from '../components/VideoEmbed';
 import { GlossarySection } from '@/components/GlossarySection';
+import PaginatedHtml from '../components/PaginatedHtml';
 
 const ProductDetail = () => {
     const { slug } = useParams();
@@ -178,10 +179,7 @@ const ProductDetail = () => {
                                 className="prose prose-lg md:prose-xl prose-stone max-w-none font-medium"
                             >
                                 {activeSection ? (
-                                    <div
-                                        className="text-justify leading-loose [&>p]:mb-6 text-stone-700"
-                                        dangerouslySetInnerHTML={{ __html: activeSection.content }}
-                                    />
+                                    <PaginatedHtml content={activeSection.content} charLimit={800} />
                                 ) : (
                                     <p className="text-center text-stone-500 italic">Pilih bagian di bawah untuk membaca lebih lanjut.</p>
                                 )}
@@ -224,7 +222,7 @@ const ProductDetail = () => {
                 transition={{ duration: 0.5 }}
                 className="fixed top-24 right-0 hidden xl:block z-50 pointer-events-none"
             >
-                <img src="/images/characters/kakek.png" alt="Kakek" className="w-37 drop-shadow-xl" />
+                <img src="/images/characters/cowo.png" alt="Kakek" className="w-45 drop-shadow-xl" />
             </motion.div>
 
             <motion.div
@@ -233,7 +231,7 @@ const ProductDetail = () => {
                 transition={{ duration: 0.5 }}
                 className="fixed bottom-22 left-0 hidden xl:block z-50 pointer-events-none"
             >
-                <img src="/images/characters/ibu.png" alt="Ibu" className="w-31 drop-shadow-xl" />
+                <img src="/images/characters/cewe.png" alt="Ibu" className="w-45 drop-shadow-xl" />
             </motion.div>
         </div>
 

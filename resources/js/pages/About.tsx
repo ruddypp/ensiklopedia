@@ -33,9 +33,9 @@ const About = () => {
                             <div className="absolute -inset-3 border-[6px] border-yellow-400 rounded-[3rem] -rotate-3"></div>
                             <div className="w-full h-full rounded-[2.5rem] overflow-hidden rotate-3 shadow-xl border-4 border-white">
                                 <img
-                                    src="/images/characters/teacher-karakter.png"
+                                    src="/images/characters/cewe.png"
                                     alt="Teacher Karakter"
-                                    className="w-full h-full object-cover scale-110"
+                                    className="object-cover scale-110"
                                     style={{ transformOrigin: 'top center' }}
                                 />
                             </div>

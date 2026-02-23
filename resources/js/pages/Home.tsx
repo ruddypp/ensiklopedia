@@ -210,7 +210,7 @@ const Home = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="fixed bottom-0 right-0 hidden lg:block z-50 pointer-events-none"
             >
-                <img src="/images/characters/anak5.png" alt="Student" className="w-32 drop-shadow-xl" />
+                <img src="/images/characters/cewe.png" alt="Student" className="w-35 drop-shadow-xl" />
             </motion.div>
 
             <motion.div
@@ -218,7 +218,7 @@ const Home = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="fixed bottom-0 left-0 hidden lg:block z-50 pointer-events-none"
             >
-                <img src="/images/characters/anak4.png" alt="Student" className="w-32 drop-shadow-xl" />
+                <img src="/images/characters/cowo.png" alt="Student" className="w-35 drop-shadow-xl" />
             </motion.div>
 
             {/* ================= GLOSSARY SECTION ================= */}

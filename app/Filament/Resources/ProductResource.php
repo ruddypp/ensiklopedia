@@ -44,6 +44,7 @@ class ProductResource extends Resource
                 Forms\Components\Section::make('Sections')->schema([
                     Forms\Components\Repeater::make('sections')
                         ->relationship()
+                        ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
                         ->schema([
                             Forms\Components\TextInput::make('title')->required(),
                             Forms\Components\Select::make('slug')
