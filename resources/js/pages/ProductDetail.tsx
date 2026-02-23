@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, ArrowLeft, Search, MoreHorizontal, Leaf, Info, Settings, Book, } from 'lucide-react';
+import { ArrowLeft, Search, Book } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { GlossarySection } from '@/components/GlossarySection';
@@ -7,9 +7,25 @@ import PaginatedHtml from '../components/PaginatedHtml';
 import VideoEmbed from '../components/VideoEmbed';
 import api from '../services/api';
 
+interface Section {
+    id: number;
+    title: string;
+    content: string;
+    video_url?: string;
+    image?: string;
+    sort_order?: number;
+}
+
+interface ProductDetailData {
+    id: number;
+    name: string;
+    cover_image?: string;
+    sections?: Section[];
+}
+
 const ProductDetail = () => {
     const { slug } = useParams();
-    const [product, setProduct] = useState<any>(null);
+    const [product, setProduct] = useState<ProductDetailData | null>(null);
     const [loading, setLoading] = useState(true);
     const [activeSectionId, setActiveSectionId] = useState<number | null>(null);
 
@@ -75,7 +91,7 @@ const ProductDetail = () => {
         );
     }
 
-    const activeSection = product.sections?.find((s: any) => s.id === activeSectionId);
+    const activeSection = product.sections?.find((s: Section) => s.id === activeSectionId);
 
     return (
         <div className="min-h-screen bg-[#fffcf5] py-10 px-4 font-sans flex items-center justify-center relative overflow-hidden">
@@ -192,7 +208,7 @@ const ProductDetail = () => {
                 {/* 3. Bottom Tabs (Folder Tabs Style) */}
                 <div className="bg-[#fef3c7] px-6 pt-6 pb-4 border-t border-[#fde68a] relative z-20">
                     <div className="flex gap-4 justify-center flex-wrap">
-                        {product.sections?.map((section: any) => (
+                        {product.sections?.map((section: Section) => (
                             <button
                                 key={section.id}
                                 onClick={() => setActiveSectionId(section.id)}

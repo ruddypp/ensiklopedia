@@ -33,7 +33,6 @@ import { useInitials } from '@/hooks/use-initials';
 import { cn, toUrl } from '@/lib/utils';
 import { dashboard } from '@/routes/filament/admin/pages';
 import type { BreadcrumbItem, NavItem, SharedData } from '@/types';
-import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 
 type Props = {
@@ -61,14 +60,11 @@ const rightNavItems: NavItem[] = [
     },
 ];
 
-const activeItemStyles =
-    'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
-
 export function AppHeader({ breadcrumbs = [] }: Props) {
     const page = usePage<SharedData>();
     const { auth } = page.props;
     const getInitials = useInitials();
-    const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl();
+    const { isCurrentUrl } = useCurrentUrl();
 
     return (
         <>

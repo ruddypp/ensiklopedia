@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { BookOpen, GraduationCap, Users } from 'lucide-react';
 
 const About = () => {

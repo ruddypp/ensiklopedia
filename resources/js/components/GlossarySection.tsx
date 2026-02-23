@@ -1,7 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ChevronRight, ChevronLeft, Menu, Loader2 } from 'lucide-react';
+import { Search, ChevronRight, ChevronLeft, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import api from '../services/api';
+
+interface GlossaryItem {
+    id: number | string;
+    title: string;
+    description: string;
+    category?: string;
+    image: string;
+}
 
 const CATEGORIES = [
     'Kearifan Lokal',
@@ -10,12 +18,12 @@ const CATEGORIES = [
 ];
 
 export const GlossarySection = () => {
-    const [glossaryItems, setGlossaryItems] = useState<any[]>([]);
+    const [glossaryItems, setGlossaryItems] = useState<GlossaryItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    const [selectedItem, setSelectedItem] = useState<any | null>(null);
+    const [selectedItem, setSelectedItem] = useState<GlossaryItem | null>(null);
 
     const itemsPerPage = 2; // As seen in image (2 items visible)
 

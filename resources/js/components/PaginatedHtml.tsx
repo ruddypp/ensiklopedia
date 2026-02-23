@@ -13,6 +13,7 @@ const PaginatedHtml: React.FC<PaginatedHtmlProps> = ({ content, charLimit = 800 
 
     useEffect(() => {
         if (!content) {
+            // eslint-disable-next-line
             setPages([]);
             return;
         }

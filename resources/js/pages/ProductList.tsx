@@ -1,17 +1,33 @@
 import { motion } from 'framer-motion';
-import { Loader2, Search, Filter, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
+import { Search, Filter, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { GlossarySection } from '@/components/GlossarySection';
 import api from '../services/api';
+
+interface ProductListItem {
+    id: number;
+    slug: string;
+    name: string;
+    cover_image?: string;
+    description?: string;
+    category?: string;
+}
+
+interface GlossaryListItem {
+    id: number;
+    title: string;
+    description: string;
+    category?: string;
+}
 
 const ProductList = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get('search') || '';
     const pageQuery = parseInt(searchParams.get('page') || '1');
 
-    const [products, setProducts] = useState<any[]>([]);
-    const [glossaries, setGlossaries] = useState<any[]>([]);
+    const [products, setProducts] = useState<ProductListItem[]>([]);
+    const [glossaries, setGlossaries] = useState<GlossaryListItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [pagination, setPagination] = useState({
         current_page: 1,

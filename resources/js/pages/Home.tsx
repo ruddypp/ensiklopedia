@@ -1,18 +1,22 @@
 import { motion } from 'framer-motion';
-import { BookOpen, ArrowRight, Star, Heart, Shield, Users, Search, Leaf, Map, Book } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GlossarySection } from '../components/GlossarySection';
 import { HeroCarousel } from '../components/HeroCarousel';
 import api from '../services/api';
 
-const Home = () => {
-    const [products, setProducts] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+interface ProductItem {
+    id: number | string;
+    slug: string;
+    name: string;
+    cover_image?: string;
+    description?: string;
+    category?: string;
+}
 
-    const scrollToGlossary = () => {
-        document.getElementById('glossary-section')?.scrollIntoView({ behavior: 'smooth' });
-    };
+const Home = () => {
+    const [products, setProducts] = useState<ProductItem[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {

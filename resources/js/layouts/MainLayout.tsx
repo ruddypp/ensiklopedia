@@ -1,12 +1,29 @@
-import { Menu, X, BookOpen, Search } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
+interface SuggestionItem {
+    name: string;
+    type: string;
+    url: string;
+}
+
+interface ProductResponse {
+    slug: string;
+    name: string;
+    [key: string]: unknown;
+}
+
+interface GlossaryResponse {
+    title: string;
+    [key: string]: unknown;
+}
+
 const MainLayout = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const [suggestions, setSuggestions] = useState<any[]>([]);
+    const [suggestions, setSuggestions] = useState<SuggestionItem[]>([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const navigate = useNavigate();
 
@@ -29,8 +46,8 @@ const MainLayout = () => {
                         api.get(`/glossaries?search=${searchTerm}&limit=3`) // Backend limit might strictly be pagination but let's see. logic says take(limit)
                     ]);
 
-                    const products = (productsRes.data.data || productsRes.data).map((p: any) => ({ ...p, type: 'Materi', url: `/products/${p.slug}` }));
-                    const glossaries = (glossaryRes.data).map((g: any) => ({ ...g, name: g.title, type: 'Istilah', url: `/products?search=${encodeURIComponent(g.title)}` }));
+                    const products = (productsRes.data.data || productsRes.data).map((p: ProductResponse) => ({ ...p, type: 'Materi', url: `/products/${p.slug}` }));
+                    const glossaries = (glossaryRes.data).map((g: GlossaryResponse) => ({ ...g, name: g.title, type: 'Istilah', url: `/products?search=${encodeURIComponent(g.title)}` }));
 
                     setSuggestions([...products, ...glossaries]);
                     setShowSuggestions(true);
