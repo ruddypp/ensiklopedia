@@ -69,20 +69,20 @@ export const GlossarySection = () => {
     }
 
     return (
-        <div className="w-full max-w-5xl mx-auto mt-20 relative z-20">
+        <div className="w-full max-w-5xl mx-auto mt-10 md:mt-20 relative z-20">
             {/* Header Card - Deep Blue with Orange Border */}
-            <div className="bg-[#1e3a8a] text-white rounded-t-[2rem] p-5 flex items-center justify-between shadow-lg relative z-10 mx-4 lg:mx-0 border-b-8 border-orange-500 select-none">
+            <div className="bg-[#1e3a8a] text-white rounded-t-[2rem] p-4 md:p-5 flex items-center justify-between shadow-lg relative z-10 border-b-8 border-orange-500 select-none">
                 <div className="flex items-center gap-3">
                     {/* Logo placeholder if needed, or just text */}
-                    <h2 className="text-xl md:text-2xl font-bold tracking-wide">Glosarium Budaya Lokal</h2>
+                    <h2 className="text-lg md:text-2xl font-bold tracking-wide">Glosarium Budaya Lokal</h2>
                 </div>
             </div>
 
             {/* Main Content Areas */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-b-[2rem] shadow-xl border border-t-0 border-gray-100 p-6 md:p-8 flex flex-col md:flex-row gap-8 mx-4 lg:mx-0 relative">
+            <div className="bg-white/80 backdrop-blur-sm rounded-b-[2rem] shadow-xl border border-t-0 border-gray-100 p-4 sm:p-6 md:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8 relative">
 
                 {/* Left Listing Column */}
-                <div className="flex-1 space-y-6">
+                <div className="flex-1 space-y-4 md:space-y-6 order-2 lg:order-1">
                     {displayedItems.length > 0 ? (
                         displayedItems.map((item) => (
                             <motion.div
@@ -90,20 +90,20 @@ export const GlossarySection = () => {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 onClick={() => setSelectedItem(item)}
-                                className="flex gap-6 items-start p-4 hover:bg-blue-50/50 rounded-2xl transition-all group cursor-pointer"
+                                className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start p-3 sm:p-4 hover:bg-blue-50/50 rounded-2xl transition-all group cursor-pointer"
                             >
-                                <div className="w-24 h-24 md:w-32 md:h-24 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0 shadow-sm border border-gray-100 group-hover:shadow-md transition-all">
+                                <div className="w-full h-48 sm:w-28 sm:h-28 md:w-32 md:h-24 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0 shadow-sm border border-gray-100 group-hover:shadow-md transition-all">
                                     <img
                                         src={item.image}
                                         alt={item.title}
                                         className="w-full h-full object-cover"
                                         onError={(e) => {
-                                            e.currentTarget.src = 'https://placehold.co/150x150?text=' + (item.title ? item.title[0] : 'G');
+                                            e.currentTarget.src = 'https://placehold.co/400x300?text=' + (item.title ? item.title[0] : 'G');
                                         }}
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <h3 className="text-xl font-bold text-[#1e3a8a] group-hover:text-orange-600 transition-colors">{item.title}</h3>
+                                <div className="space-y-2 w-full text-center sm:text-left">
+                                    <h3 className="text-lg md:text-xl font-bold text-[#1e3a8a] group-hover:text-orange-600 transition-colors">{item.title}</h3>
                                     <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{item.description}</p>
                                     {item.category && (
                                         <span className="inline-block px-2 py-0.5 bg-gray-100 text-gray-500 text-[10px] uppercase tracking-wider font-bold rounded-md">
@@ -124,28 +124,30 @@ export const GlossarySection = () => {
                         <button
                             onClick={handlePrev}
                             disabled={currentPage === 1}
-                            className="btn btn-ghost btn-sm gap-2 disabled:opacity-30 text-gray-500 hover:text-[#1e3a8a]"
+                            className="btn btn-ghost btn-sm gap-1 sm:gap-2 px-1 sm:px-3 disabled:opacity-30 text-gray-500 hover:text-[#1e3a8a]"
                         >
                             <ChevronLeft className="w-4 h-4" />
-                            Sebelumnya
+                            <span className="hidden sm:inline">Sebelumnya</span>
+                            <span className="sm:hidden text-xs">Prev</span>
                         </button>
-                        <span className="text-sm font-medium text-gray-400">
+                        <span className="text-xs sm:text-sm font-medium text-gray-400">
                             Halaman <span className="text-[#1e3a8a] font-bold">{currentPage}</span> / {totalPages || 1}
                         </span>
                         <button
                             onClick={handleNext}
                             disabled={currentPage === totalPages || totalPages === 0}
-                            className="btn btn-ghost btn-sm gap-2 disabled:opacity-30 text-gray-500 hover:text-[#1e3a8a]"
+                            className="btn btn-ghost btn-sm gap-1 sm:gap-2 px-1 sm:px-3 disabled:opacity-30 text-gray-500 hover:text-[#1e3a8a]"
                         >
-                            Selanjutnya
+                            <span className="hidden sm:inline">Selanjutnya</span>
+                            <span className="sm:hidden text-xs">Next</span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
                     </div>
                 </div>
 
                 {/* Right Sidebar - Search & Filter */}
-                <div className="w-full md:w-72 space-y-6">
-                    <div className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100/50">
+                <div className="w-full lg:w-72 space-y-4 md:space-y-6 order-1 lg:order-2">
+                    <div className="bg-blue-50/50 rounded-2xl p-4 md:p-6 border border-blue-100/50">
                         <h3 className="text-lg font-bold text-[#1e3a8a] mb-4 border-b border-blue-100 pb-2">
                             Pencarian Cepat
                         </h3>
@@ -232,8 +234,8 @@ export const GlossarySection = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Modal Header - Window Style */}
-                            <div className="bg-[#fef9c3] px-5 py-3 flex items-center justify-between border-b-2 border-[#fde68a] shrink-0">
-                                <h3 className="text-lg font-black text-[#1e3a8a] tracking-tight truncate">
+                            <div className="bg-[#fef9c3] px-4 md:px-5 py-3 flex items-center justify-between border-b-2 border-[#fde68a] shrink-0">
+                                <h3 className="text-base md:text-lg font-black text-[#1e3a8a] tracking-tight truncate">
                                     Detail Glosarium
                                 </h3>
                                 <div className="flex gap-1.5 bg-[#faebd7] px-2.5 py-1 rounded-full border border-[#fde68a]">
@@ -244,8 +246,8 @@ export const GlossarySection = () => {
                             </div>
 
                             {/* Modal Content */}
-                            <div className="p-5 md:p-6 overflow-y-auto custom-scrollbar">
-                                <div className="w-full h-40 md:h-48 bg-gray-100 rounded-xl overflow-hidden mb-4 border-2 border-white shadow-md shrink-0">
+                            <div className="p-4 md:p-6 overflow-y-auto custom-scrollbar">
+                                <div className="w-full h-48 sm:h-56 md:h-48 bg-gray-100 rounded-xl overflow-hidden mb-4 border-2 border-white shadow-md shrink-0">
                                     <img
                                         src={selectedItem.image}
                                         alt={selectedItem.title}

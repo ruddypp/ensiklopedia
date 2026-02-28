@@ -28,6 +28,7 @@ const ProductDetail = () => {
     const [product, setProduct] = useState<ProductDetailData | null>(null);
     const [loading, setLoading] = useState(true);
     const [activeSectionId, setActiveSectionId] = useState<number | null>(null);
+    const [allProducts, setAllProducts] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -49,6 +50,20 @@ const ProductDetail = () => {
 
         fetchProduct();
     }, [slug]);
+
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            try {
+                const response = await api.get('/products?limit=100');
+                const productsData = Array.isArray(response.data.data) ? response.data.data : response.data;
+                setAllProducts(productsData);
+            } catch (error) {
+                console.error('Failed to fetch all products:', error);
+            }
+        };
+
+        fetchAllProducts();
+    }, []);
 
     const [showKakek, setShowKakek] = useState(true);
     const [showIbu, setShowIbu] = useState(false);
@@ -225,6 +240,33 @@ const ProductDetail = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* ================= DAFTAR ISI SECTION ================= */}
+                {allProducts.length > 0 && (
+                    <section className="px-6 mb-8 mt-12 pb-4">
+                        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-sm border border-[#fde68a]">
+                            <h3 className="text-xl font-black text-[#ea580c] mb-4 text-center">Daftar Isi E-Ensiklopedia</h3>
+                            <div className="flex flex-wrap gap-3 justify-center">
+                                {allProducts.map((p) => (
+                                    <Link
+                                        key={p.id}
+                                        to={`/products/${p.slug}`}
+                                        className={`
+                                            px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-sm
+                                            ${p.slug === slug
+                                                ? 'bg-orange-600 text-white border-2 border-orange-600'
+                                                : 'bg-white text-orange-600 hover:bg-orange-50 border-2 border-orange-200 hover:border-orange-400'
+                                            }
+                                        `}
+                                    >
+                                        {p.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
                 {/* ================= GLOSSARY SECTION ================= */}
                 <section id="glossary-section" className="px-6 mb-12">
                     <GlossarySection />
