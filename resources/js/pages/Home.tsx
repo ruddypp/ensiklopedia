@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AboutCards } from '../components/AboutCards';
 import { GlossarySection } from '../components/GlossarySection';
 import { HeroCarousel } from '../components/HeroCarousel';
 import api from '../services/api';
@@ -83,52 +84,9 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* ================= 3 ACTION BUTTONS ================= */}
-            <div className="container mx-auto px-6 relative z-10 mt-8 mb-16">
-                <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-
-                    {/* Button 1: Sains Alam (Orange) */}
-                    <Link to="/products?category=sains" className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300">
-                        <div className="p-6 flex items-center gap-6 text-white">
-                            <div className="w-24 h-24 flex items-center justify-center shrink-0">
-                                <img src="/images/asset1.png" alt="Sains Alam" className="w-full h-full object-contain drop-shadow-md" />
-                            </div>
-                            <div className="text-left">
-                                <h3 className="text-2xl font-bold">Sains Alam</h3>
-                                <p className="text-orange-100 text-sm font-medium opacity-90">Eksplorasi Alam Semesta</p>
-                            </div>
-                        </div>
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
-                    </Link>
-
-                    {/* Button 2: Budaya Lokal (Yellow) */}
-                    <Link to="/products?category=budaya" className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-yellow-400 to-yellow-500 shadow-lg hover:shadow-yellow-500/40 hover:-translate-y-1 transition-all duration-300">
-                        <div className="p-6 flex items-center gap-6 text-white">
-                            <div className="w-24 h-24 flex items-center justify-center shrink-0">
-                                <img src="/images/asset2.png" alt="Budaya Lokal" className="w-full h-full object-contain drop-shadow-md" />
-                            </div>
-                            <div className="text-left">
-                                <h3 className="text-2xl font-bold">Budaya Lokal</h3>
-                                <p className="text-yellow-100 text-sm font-medium opacity-90">Warisan Nusantara</p>
-                            </div>
-                        </div>
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
-                    </Link>
-
-                    {/* Button 3: E-Ensiklopedia (Blue) - Scrolls to Glossary */}
-                    <Link to="/products?category=ensiklopedia" className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300">
-                        <div className="p-6 flex items-center gap-6 text-white">
-                            <div className="w-24 h-24 flex items-center justify-center shrink-0">
-                                <img src="/images/asset3.png" alt="E-Ensiklopedia" className="w-full h-full object-contain drop-shadow-md" />
-                            </div>
-                            <div className="text-left">
-                                <h3 className="text-2xl font-bold">Ensiklopedia</h3>
-                                <p className="text-blue-100 text-sm font-medium opacity-90">Kamus Pengetahuan</p>
-                            </div>
-                        </div>
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
-                    </Link>
-                </div>
+            {/* ================= ABOUT CARDS ================= */}
+            <div className="container mx-auto px-6 relative z-10 mt-8 mb-16 max-w-5xl">
+                <AboutCards />
             </div>
 
             {/* ================= TOPIK TERBARU ================= */}
