@@ -56,7 +56,72 @@ class ProductResource extends Resource
                                     'ipas' => 'Konsep IPAS',
                                     'dampak' => 'Dampak & Tanggung Jawab',
                                 ])->required(),
-                            Forms\Components\RichEditor::make('content'),
+                            Forms\Components\RichEditor::make('content')
+                                ->fileAttachmentsDirectory('sections/attachments')
+                                ->fileAttachmentsDisk('public')
+                                ->saveUploadedFileAttachmentsUsing(function ($file) {
+                                    // Resize proportionally — max 1280px on longest side
+                                    $maxSide = 1280;
+
+                                    $tmpPath = $file->getRealPath();
+                                    $mime    = $file->getMimeType();
+
+                                    // Create GD image from uploaded file
+                                    $src = match (true) {
+                                        str_contains($mime, 'png')  => imagecreatefrompng($tmpPath),
+                                        str_contains($mime, 'gif')  => imagecreatefromgif($tmpPath),
+                                        str_contains($mime, 'webp') => imagecreatefromwebp($tmpPath),
+                                        default                     => imagecreatefromjpeg($tmpPath),
+                                    };
+
+                                    $srcW = imagesx($src);
+                                    $srcH = imagesy($src);
+
+                                    // Calculate new size keeping aspect ratio
+                                    if ($srcW >= $srcH) {
+                                        // Landscape or square
+                                        $targetW = $maxSide;
+                                        $targetH = (int) round($srcH * ($maxSide / $srcW));
+                                    } else {
+                                        // Portrait
+                                        $targetH = $maxSide;
+                                        $targetW = (int) round($srcW * ($maxSide / $srcH));
+                                    }
+
+                                    // Create output canvas
+                                    $dst = imagecreatetruecolor($targetW, $targetH);
+
+                                    // Preserve transparency for PNG/GIF
+                                    if (str_contains($mime, 'png') || str_contains($mime, 'gif')) {
+                                        imagealphablending($dst, false);
+                                        imagesavealpha($dst, true);
+                                        $transparent = imagecolorallocatealpha($dst, 0, 0, 0, 127);
+                                        imagefilledrectangle($dst, 0, 0, $targetW, $targetH, $transparent);
+                                        imagealphablending($dst, true);
+                                    }
+
+                                    // Resample into new size
+                                    imagecopyresampled($dst, $src, 0, 0, 0, 0, $targetW, $targetH, $srcW, $srcH);
+
+                                    // Save to temp file then move to storage
+                                    $filename = 'sections/attachments/' . uniqid('img_', true) . '.jpg';
+                                    $tempOut  = tempnam(sys_get_temp_dir(), 'filament_attach_');
+
+                                    imagejpeg($dst, $tempOut, 90);
+                                    imagedestroy($src);
+                                    imagedestroy($dst);
+
+                                    \Illuminate\Support\Facades\Storage::disk('public')
+                                        ->putFileAs(
+                                            'sections/attachments',
+                                            new \Illuminate\Http\File($tempOut),
+                                            basename($filename),
+                                        );
+
+                                    @unlink($tempOut);
+
+                                    return $filename;
+                                }),
                             Forms\Components\FileUpload::make('image')
                                 ->image()
                                 ->directory('sections')
