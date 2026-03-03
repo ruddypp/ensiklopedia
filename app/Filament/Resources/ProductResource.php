@@ -60,8 +60,9 @@ class ProductResource extends Resource
                                 ->fileAttachmentsDirectory('sections/attachments')
                                 ->fileAttachmentsDisk('public')
                                 ->saveUploadedFileAttachmentsUsing(function ($file) {
-                                    // Resize proportionally — max 1280px on longest side
-                                    $maxSide = 1280;
+                                    // Target dimensions: 1920x1080 landscape
+                                    $targetW = 1920;
+                                    $targetH = 1080;
 
                                     $tmpPath = $file->getRealPath();
                                     $mime    = $file->getMimeType();
@@ -77,15 +78,22 @@ class ProductResource extends Resource
                                     $srcW = imagesx($src);
                                     $srcH = imagesy($src);
 
-                                    // Calculate new size keeping aspect ratio
-                                    if ($srcW >= $srcH) {
-                                        // Landscape or square
-                                        $targetW = $maxSide;
-                                        $targetH = (int) round($srcH * ($maxSide / $srcW));
+                                    // Calculate crop to fill 1920x1080 (cover/center-crop)
+                                    $srcRatio = $srcW / $srcH;
+                                    $dstRatio = $targetW / $targetH;
+
+                                    if ($srcRatio > $dstRatio) {
+                                        // Source is wider → crop sides
+                                        $cropH  = $srcH;
+                                        $cropW  = (int) round($srcH * $dstRatio);
+                                        $cropX  = (int) round(($srcW - $cropW) / 2);
+                                        $cropY  = 0;
                                     } else {
-                                        // Portrait
-                                        $targetH = $maxSide;
-                                        $targetW = (int) round($srcW * ($maxSide / $srcH));
+                                        // Source is taller (portrait) → crop top/bottom
+                                        $cropW  = $srcW;
+                                        $cropH  = (int) round($srcW / $dstRatio);
+                                        $cropX  = 0;
+                                        $cropY  = (int) round(($srcH - $cropH) / 2);
                                     }
 
                                     // Create output canvas
@@ -100,12 +108,12 @@ class ProductResource extends Resource
                                         imagealphablending($dst, true);
                                     }
 
-                                    // Resample into new size
-                                    imagecopyresampled($dst, $src, 0, 0, 0, 0, $targetW, $targetH, $srcW, $srcH);
+                                    // Resample cropped region into 1920x1080
+                                    imagecopyresampled($dst, $src, 0, 0, $cropX, $cropY, $targetW, $targetH, $cropW, $cropH);
 
                                     // Save to temp file then move to storage
-                                    $filename = 'sections/attachments/' . uniqid('img_', true) . '.jpg';
-                                    $tempOut  = tempnam(sys_get_temp_dir(), 'filament_attach_');
+                                    $filename  = 'sections/attachments/' . uniqid('img_', true) . '.jpg';
+                                    $tempOut   = tempnam(sys_get_temp_dir(), 'filament_attach_');
 
                                     imagejpeg($dst, $tempOut, 90);
                                     imagedestroy($src);
